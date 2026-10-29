@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information and general Arabic learning statistics",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Unique Firebase user ID" },
+        "email": { "type": "string", "description": "User email address" },
+        "displayName": { "type": "string", "description": "User display name" },
+        "photoURL": { "type": "string", "description": "User avatar photo URL" },
+        "xp": { "type": "number", "description": "Total experience points earned" },
+        "streak": { "type": "number", "description": "Current daily learning streak count" },
+        "level": { "type": "string", "description": "Current learning level (Pemula, Menengah, Mahir)" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of last activity update" },
+        "createdAt": { "type": "string", "description": "ISO timestamp of account creation" }
+      },
+      "required": ["uid", "email", "displayName", "xp", "streak", "level", "createdAt"]
+    },
+    "Progress": {
+      "title": "Lesson Progress",
+      "description": "Progress tracking for specific Arabic learning lessons and modules",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner user ID" },
+        "lessonId": { "type": "string", "description": "Identifier of the completed lesson" },
+        "category": { "type": "string", "description": "Category of the lesson (mufrodat, qawaid, hiwar)" },
+        "score": { "type": "number", "description": "Score achieved in the lesson practice" },
+        "completed": { "type": "boolean", "description": "Whether the lesson is completed" },
+        "completedAt": { "type": "string", "description": "ISO timestamp of completion" }
+      },
+      "required": ["userId", "lessonId", "completed", "completedAt"]
+    },
+    "SavedWord": {
+      "title": "Saved Vocabulary",
+      "description": "Bookmarked Arabic words and vocabulary for quick revision",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner user ID" },
+        "wordId": { "type": "string", "description": "Unique word identifier" },
+        "arabic": { "type": "string", "description": "Arabic script of the word" },
+        "transliteration": { "type": "string", "description": "Latin pronunciation transliteration" },
+        "meaning": { "type": "string", "description": "Indonesian meaning of the word" },
+        "category": { "type": "string", "description": "Vocabulary category (misal: Rumah, Sekolah, Makanan)" },
+        "savedAt": { "type": "string", "description": "ISO timestamp when word was saved" }
+      },
+      "required": ["userId", "wordId", "arabic", "meaning", "savedAt"]
+    },
+    "QuizResult": {
+      "title": "Quiz Result",
+      "description": "Records of Arabic quizzes taken by the user",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner user ID" },
+        "quizId": { "type": "string", "description": "Unique identifier of the quiz attempt" },
+        "quizTitle": { "type": "string", "description": "Title of the quiz" },
+        "category": { "type": "string", "description": "Quiz category" },
+        "score": { "type": "number", "description": "Number of correct answers" },
+        "totalQuestions": { "type": "number", "description": "Total questions count" },
+        "percentage": { "type": "number", "description": "Score percentage 0-100" },
+        "completedAt": { "type": "string", "description": "ISO timestamp of completion" }
+      },
+      "required": ["userId", "quizId", "quizTitle", "score", "totalQuestions", "percentage", "completedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile and top-level stats"
+    },
+    "/users/{userId}/progress/{progressId}": {
+      "schema": "Progress",
+      "description": "Per-lesson progress records for this user"
+    },
+    "/users/{userId}/saved_words/{savedWordId}": {
+      "schema": "SavedWord",
+      "description": "Personal vocabulary flashcards saved by this user"
+    },
+    "/users/{userId}/quiz_results/{quizResultId}": {
+      "schema": "QuizResult",
+      "description": "Quiz attempts and performance history for this user"
+    }
+  }
+}

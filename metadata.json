@@ -1,0 +1,6 @@
+{
+  "name": "Al-Bayan - Belajar Bahasa Arab",
+  "description": "Media belajar bahasa Arab interaktif dengan materi kosakata, tata bahasa, percakapan sehari-hari, latihan kuis, dan tutor AI cerdas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
