@@ -5,8 +5,12 @@ import firebaseConfig from '../../firebase-applet-config.json';
 
 const app = initializeApp(firebaseConfig);
 
-// CRITICAL: Initialize Firestore with firestoreDatabaseId as required by skill
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+// Initialize Firestore supporting default or custom database
+export const db =
+  firebaseConfig.firestoreDatabaseId &&
+  firebaseConfig.firestoreDatabaseId !== '(default)'
+    ? getFirestore(app, firebaseConfig.firestoreDatabaseId)
+    : getFirestore(app);
 
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();

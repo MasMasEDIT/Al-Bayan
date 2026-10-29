@@ -1,12 +1,12 @@
 {
-  "projectId": "splendid-house-vbcxw",
-  "appId": "1:589727582119:web:552acef18b127feafa5882",
-  "apiKey": "AIzaSyCfXvJOQkbG25Y5I8D2lyq3I4ZHWs1Uu8o",
-  "authDomain": "splendid-house-vbcxw.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-albayanbelajarba-4c0208a6-8d30-4f8d-bd48-5dc9270db610",
-  "storageBucket": "splendid-house-vbcxw.firebasestorage.app",
-  "messagingSenderId": "589727582119",
+  "projectId": "al-bayan-cb84f",
+  "appId": "1:453636220612:web:c391e75fcf24e31ee90b91",
+  "apiKey": "AIzaSyC9exq44NELSgMB_ktt789HugqjnvNXGCE",
+  "authDomain": "al-bayan-cb84f.firebaseapp.com",
+  "storageBucket": "al-bayan-cb84f.firebasestorage.app",
+  "messagingSenderId": "453636220612",
+  "firestoreDatabaseId": "(default)",
   "measurementId": "",
-  "oAuthClientId": "589727582119-4mc4pit2rfqvclmcivn8foq3cpmu1g24.apps.googleusercontent.com",
+  "oAuthClientId": "",
   "recaptchaSiteKey": ""
 }
