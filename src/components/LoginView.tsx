@@ -68,9 +68,14 @@ export const LoginView: React.FC = () => {
             </div>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 text-xs text-emerald-200/70 border border-emerald-800/60 px-3 py-1.5 rounded-full bg-emerald-950/40">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Tahun Ajaran 2026/2027</span>
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:flex items-center text-xs font-bold text-amber-300 bg-amber-500/15 border border-amber-400/40 px-3 py-1.5 rounded-full shadow-xs">
+              <span>© DikoSaputra</span>
+            </div>
+            <div className="hidden md:flex items-center gap-2 text-xs text-emerald-200/70 border border-emerald-800/60 px-3 py-1.5 rounded-full bg-emerald-950/40">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Tahun Ajaran 2026/2027</span>
+            </div>
           </div>
         </div>
       </header>
@@ -327,9 +332,17 @@ export const LoginView: React.FC = () => {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 border-t border-emerald-900/30 py-4 text-center text-xs text-slate-400">
-        <p>Al-Bayan • Media Belajar Bahasa Arab Kelas X Madrasah Aliyah • Siap Deploy Vercel</p>
+      {/* Luxurious Islamic Footer with Copyright DikoSaputra */}
+      <footer className="relative z-10 border-t border-amber-500/20 bg-[#041510]/80 backdrop-blur-md py-6 px-4 text-center text-xs text-slate-400">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="font-medium text-slate-300">
+            Al-Bayan (الْبَيَان) — Media Belajar Bahasa Arab Kelas 10 Madrasah Aliyah (KMA 183)
+          </p>
+          <div className="flex items-center gap-2 text-amber-300 font-bold bg-amber-500/10 border border-amber-400/30 px-3 py-1 rounded-full text-[11px]">
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span>Hak Cipta © 2026 DikoSaputra</span>
+          </div>
+        </div>
       </footer>
     </div>
   );

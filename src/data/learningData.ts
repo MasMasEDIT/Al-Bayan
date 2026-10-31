@@ -1,4 +1,4 @@
-import { MufrodatItem, QawaidItem, HiwarItem, TeacherSilabusItem } from '../types';
+import { MufrodatItem, QawaidItem, HiwarItem, TeacherSilabusItem, VideoLessonItem } from '../types';
 
 export const MUFRODAT_DATA: MufrodatItem[] = [
   // ================= BAB 1: التَّحِيَّاتُ وَالتَّعَارُفُ (Sapaan & Perkenalan Diri - MA Kelas 10) =================
@@ -727,4 +727,286 @@ export const TEACHER_SILABUS_DATA: TeacherSilabusItem[] = [
     materiPokok: 'Jadwal harian santri, penyebutan jam dan waktu Arab, tashrif fi\'il mudhari\', struktur fi\'il-faa\'il-maf\'ul.',
     panduanAktivitas: 'Membuat diary/jurnal harian berbahasa Arab, latihan presentasi lisan rutinitas pagi santri di depan kelas.',
   },
+];
+
+export const VIDEO_LESSONS_DATA: VideoLessonItem[] = [
+  {
+    id: 'vid-bab-1',
+    bab: 1,
+    title: 'Sapaan & Perkenalan Santri Baru',
+    arabicTitle: 'التَّحِيَّاتُ وَالتَّعَارُفُ فِي الْمَدْرَسَةِ',
+    description: 'Animasi dialog interaktif antara santri baru di koridor kelas 10 Madrasah Aliyah, mengenalkan kartu pelajar (Bithaaqah Syakhshiyyah) dan asal daerah.',
+    duration: '4 Menit 15 Detik',
+    videoUrl: 'https://www.youtube.com/embed/k7m1zXg3_bA',
+    thumbnailDesc: 'Kartun santri Aliyah saling memberi salam dan berkenalan di serambi madrasah',
+    keyPoints: [
+      'Penggunaan salam islami dan jawaban yang setara atau lebih utama.',
+      'Menanyakan identitas dengan kata tanya: مَن (siapa), مَا (apa), dan مِنْ أَيْنَ (dari mana).',
+      'Penerapan Dhomir Munfashil (أَنَا، أَنْتَ، أَنْتِ، هُوَ، هِيَ).',
+      'Kosakata identitas: بطاقة شخصية (KTS), مسقط الرأس (tempat lahir), عنوان (alamat).'
+    ],
+    transcript: [
+      {
+        arabic: 'السَّلَامُ عَلَيْكُمْ يَا أَخِيْ الْكَرِيْمَ!',
+        transliteration: "Assalaamu 'alaikum yaa akhiil-kariim!",
+        indonesian: 'Semoga keselamatan tercurah kepadamu wahai saudaraku yang mulia!'
+      },
+      {
+        arabic: 'وَعَلَيْكُمُ السَّلَامُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ، أَهْلًا وَسَهْلًا!',
+        transliteration: "Wa 'alaikumus-salaam wa rahmatullaahi wa barakaatuh, ahlan wa sahlan!",
+        indonesian: 'Dan untukmu keselamatan serta rahmat Allah dan berkah-Nya, selamat datang!'
+      },
+      {
+        arabic: 'اسْمِيْ أَحْمَدُ، أَنَا طَالِبٌ جَدِيْدٌ فِي الصَّفِّ الْعَاشِرِ، وَمَا اسْمُكَ؟',
+        transliteration: "Ismii Ahmad, ana thoolibun jadiidun fish-shoffil 'aasyir, wamas-muka?",
+        indonesian: 'Namaku Ahmad, aku murid baru di kelas sepuluh, dan siapakah namamu?'
+      },
+      {
+        arabic: 'اسْمِيْ فَرْحَانُ، تَشَرَّفْنَا بِمَعْرِفَتِكَ يَا أَحْمَدُ! مِنْ أَيْنَ أَنْتَ قَادِمٌ؟',
+        transliteration: "Ismii Farhaan, tasyarrafnaa bima'rifatika yaa Ahmad! Min aina anta qoodim?",
+        indonesian: 'Namaku Farhan, kami merasa terhormat berkenalan denganmu wahai Ahmad! Dari mana asalmu?'
+      },
+      {
+        arabic: 'أَنَا قَادِمٌ مِنْ سُوْرَابَايَا، وَهَذِهِ بِطَاقَتِي الشَّخْصِيَّةُ الْمَدْرَسِيَّةُ.',
+        transliteration: "Ana qoodimun min Suurabaya, wa haadzihi bithaaqatiisy-syakhshiyyatu al-madrasiyyah.",
+        indonesian: 'Aku datang dari Surabaya, dan ini adalah kartu pelajar madrasah milikku.'
+      }
+    ],
+    checkpointQuiz: {
+      question: "Apakah arti dari ungkapan 'تَشَرَّفْنَا بِمَعْرِفَتِكَ' saat berkenalan?",
+      options: [
+        'Sampai jumpa esok hari',
+        'Kami merasa terhormat dan senang berkenalan denganmu',
+        'Di mana letak tempat kelahiranmu?',
+        'Tolong tunjukkan kartu identitasmu'
+      ],
+      answerIndex: 1,
+      explanation: "Ungkapan 'تَشَرَّفْنَا بِمَعْرِفَتِكَ' merupakan ungkapan sopan khas Arab yang berarti 'Kami senang / terhormat berkenalan denganmu'."
+    }
+  },
+  {
+    id: 'vid-bab-2',
+    bab: 2,
+    title: 'Kehangatan Keluarga & Ruang Rumah',
+    arabicTitle: 'الْأُسْرَةُ وَالْبَيْتُ السَّعِيْدُ',
+    description: 'Animasi tur keliling rumah islami bersama keluarga santri, mengenal anggota keluarga, ruang tamu, dapur, serta kepemilikan (Dhomir Muttashil).',
+    duration: '5 Menit 30 Detik',
+    videoUrl: 'https://www.youtube.com/embed/5a67JtH-g2s',
+    thumbnailDesc: 'Suasana santai keluarga berkumpul di ruang tamu sambil membaca Al-Quran',
+    keyPoints: [
+      'Penyebutan nama-nama kerabat: الجَدُّ (kakek), الجَدَّةُ (nenek), الوالد (ayah), الوالدة (ibu).',
+      'Penggabungan kata benda dengan Dhomir Muttashil: بَيْتِيْ (rumahku), أُسْرَتُكَ (keluargamu).',
+      'Penyebutan ruangan: غُرْفَةُ الْجُلُوْسِ (ruang tamu), غُرْفَةُ الْمُذَاكَرَةِ (ruang belajar), الْمَطْبَخُ (dapur).',
+      'Adab birrul walidain dalam percakapan sehari-hari.'
+    ],
+    transcript: [
+      {
+        arabic: 'مَرْحَبًا بِكُمْ فِي بَيْتِنَا، هَذَا بَيْتٌ جَمِيْلٌ وَمُرَتَّبٌ.',
+        transliteration: "Marhaban bikum fii baitinaa, haadzaa baitun jamiilun wa murattab.",
+        indonesian: 'Selamat datang di rumah kami, ini rumah yang indah dan tertata rapi.'
+      },
+      {
+        arabic: 'هَذِهِ غُرْفَةُ الْجُلُوْسِ، يَقْرَأُ فِيْهَا أَبِي الْجَرِيْدَةَ كُلَّ صَبَاحٍ.',
+        transliteration: "Haadzihi ghurfatul juluus, yaqra-u fiihaa abii al-jariidata kulla shobaah.",
+        indonesian: 'Ini ruang tamu, ayahku membaca koran di dalamnya setiap pagi.'
+      },
+      {
+        arabic: 'وَتِلْكَ غُرْفَةُ الْمُذَاكَرَةِ، أُذَاكِرُ فِيْهَا دُرُوْسَ اللُّغَةِ الْعَرَبِيَّةِ مَعَ أُخْتِيْ.',
+        transliteration: "Wa tilka ghurfatul mudzaakarah, udzaakiru fiihaa duruusal lughatil 'arabiyyah ma'a ukhtii.",
+        indonesian: 'Dan itu ruang belajar, aku mengulang pelajaran bahasa Arab di dalamnya bersama saudariku.'
+      },
+      {
+        arabic: 'أُمِّيْ تُعِدُّ الطَّعَامَ الشَّهِيَّ فِي الْمَطْبَخِ، بَارَكَ اللهُ فِي أُسْرَتِنَا!',
+        transliteration: "Ummii tu'idduth-tho'aamasy-syahiyya fil mathbakh, baarakallaahu fii usratinaa!",
+        indonesian: 'Ibuku sedang menyiapkan hidangan lezat di dapur, semoga berkah Allah selalu menaungi keluarga kami!'
+      }
+    ],
+    checkpointQuiz: {
+      question: "Apa bahasa Arab untuk istilah 'Ruang Belajar'?",
+      options: [
+        'غُرْفَةُ النَّوْمِ (Ghurfatun-Naum)',
+        'غُرْفَةُ الْمُذَاكَرَةِ (Ghurfatul-Mudzaakarah)',
+        'غُرْفَةُ الْأَكْلِ (Ghurfatul-Akl)',
+        'الْمَطْبَخُ (Al-Mathbakh)'
+      ],
+      answerIndex: 1,
+      explanation: "'غُرْفَةُ الْمُذَاكَرَةِ' secara harfiah adalah kamar/ruang untuk mengulang pelajaran atau ruang belajar."
+    }
+  },
+  {
+    id: 'vid-bab-3',
+    bab: 3,
+    title: 'Eksplorasi Fasilitas Madrasah Aliyah',
+    arabicTitle: 'مَرَافِقُ الْمَدْرَسَةِ الثَّانَوِيَّةِ الْإِسْلَامِيَّةِ',
+    description: 'Petualangan animasi menelusuri perpustakaan digital madrasah, laboratorium bahasa, masjid megah, dan lapangan olahraga serbaguna.',
+    duration: '4 Menit 50 Detik',
+    videoUrl: 'https://www.youtube.com/embed/n4fCkyq_f7o',
+    thumbnailDesc: 'Gedung Madrasah Aliyah megah nan asri dengan fasilitas perpustakaan dan laboratorium',
+    keyPoints: [
+      'Kosakata fasilitas madrasah: الْمَكْتَبَةُ (perpustakaan), الْمُخْتَبَرُ (laboratorium), الْمُصَلَّى (musholla).',
+      'Penerapan kaidah Na\'at Man\'ut (kesesuaian kata sifat dengan benda).',
+      'Kaidah penting: Jamak taksir ghairu \'aqil berstatus mu-annats (e.g. هَذِهِ كُتُبٌ نَافِعَةٌ).',
+      'Civitas madrasah: نَاظِرُ الْمَدْرَسَةِ (kepala madrasah), أَمِيْنُ الْمَكْتَبَةِ (pustakawan).'
+    ],
+    transcript: [
+      {
+        arabic: 'مَدْرَسَتُنَا الثَّانَوِيَّةُ وَاسِعَةٌ وَحَدِيْثَةٌ، فِيْهَا مَرَافِقُ مُتَعَدِّدَةٌ.',
+        transliteration: "Madrasatunaats-tsaanawiyyatu waasi'atun wa hadiitsah, fiihaa maraafiqu muta'addidah.",
+        indonesian: 'Madrasah Aliyah kita luas dan modern, di dalamnya terdapat berbagai fasilitas lengkap.'
+      },
+      {
+        arabic: 'انْظُرْ إِلَى تِلْكَ الْمَكْتَبَةِ الْكَبِيْرَةِ، فِيْهَا كُتُبٌ قَيِّمَةٌ وَمَرَاجِعُ دِيْنِيَّةٌ.',
+        transliteration: "Unzhur ilaa tilkal maktabatil kabiirah, fiihaa kutubun qoyyimah wa maraaji'u diiniyyah.",
+        indonesian: 'Lihatlah ke perpustakaan besar itu, di dalamnya tersimpan buku-buku berharga dan referensi keagamaan.'
+      },
+      {
+        arabic: 'وَذَلِكَ مُخْتَبَرُ اللُّغَاتِ، نَتَدَرَّبُ فِيْهِ عَلَى النُّطْقِ الْعَرَبِيِّ الصَّحِيْحِ.',
+        transliteration: "Wa dzaalika mukhtabarul lughaat, natadarrobu fiihi 'alan-nuthqil 'arabiyyish-shohiih.",
+        indonesian: 'Dan itu adalah laboratorium bahasa, tempat kita berlatih pelafalan bahasa Arab yang fasih.'
+      }
+    ],
+    checkpointQuiz: {
+      question: "Mengapa kalimat 'هَذِهِ كُتُبٌ جَدِيْدَةٌ' menggunakan kata tunjuk muannats (هَذِهِ)?",
+      options: [
+        'Karena kata kutub berakhiran ta marbuthah',
+        'Karena jamak taksir benda tak bernyawa (ghairu aaqil) dihukumi muannats',
+        'Karena buku adalah barang yang dibeli oleh siswi',
+        'Karena itu hanya perkiraan dan boleh memakai hadza'
+      ],
+      answerIndex: 1,
+      explanation: "Kaidah nahwu menyatakan: كُلُّ جَمْعٍ غَيْرِ عَاقِلٍ يُعَامَلُ مُعَامَلَةَ الْمُفْرَدِ الْمُؤَنَّثِ (Semua jamak benda tak berakal dihukumi muannats tunggal)."
+    }
+  },
+  {
+    id: 'vid-bab-4',
+    bab: 4,
+    title: 'Rutinitas Keseharian Santri Aliyah',
+    arabicTitle: 'الْحَيَاةُ الْيَوْمِيَّةُ لِطَالِبِ الْمَعْهَدِ',
+    description: 'Animasi jadwal padat dan penuh berkah santri: bangun shalat tahajjud, shalat subuh berjamaah, halaqah Quran, belajar di kelas, hingga olahraga sore.',
+    duration: '6 Menit 10 Detik',
+    videoUrl: 'https://www.youtube.com/embed/Q_Qf6r4bZ1o',
+    thumbnailDesc: 'Santri bangun pagi, berwudhu, shalat berjamaah dan membaca kitab suci bersama',
+    keyPoints: [
+      'Pola Jumlah Fi\'liyyah: Fi\'il (kata kerja) selalu di depan Faa\'il (pelaku).',
+      'Penyebutan waktu dan jam (السَّاعَةُ الرَّابِعَةُ صَبَاحًا، السَّاعَةُ السَّابِعَةُ وَالنِّصْفُ).',
+      'Perubahan fi\'il mudhari\' sesuai dhomir (أَسْتَيْقِظُ، نَذْهَبُ، يَقْرَأُ، تَدْرُسُ).',
+      'Manajemen waktu santri yang disiplin dan istiqomah.'
+    ],
+    transcript: [
+      {
+        arabic: 'أَسْتَيْقِظُ مِنَ النَّوْمِ فِي السَّاعَةِ الرَّابِعَةِ صَبَاحًا قَبْلَ أَذَانِ الْفَجْرِ.',
+        transliteration: "Astayqidzu minan-naumi fiis-saa'atir-roobi'ati shobaahan qobla adzaanil fajr.",
+        indonesian: 'Aku bangun dari tidur pada pukul empat pagi sebelum kumandang azan fajar.'
+      },
+      {
+        arabic: 'أَتَوَضَّأُ ثُمَّ أُصَلِّيْ صَلَاةَ الصُّبْحِ جَمَاعَةً فِي الْمَسْجِدِ الْجَامِعِ.',
+        transliteration: "Atawadh-dho-u tsumma ushallii sholaatash-shubhi jamaa'atan fil masjidil jaami'.",
+        indonesian: 'Aku berwudhu kemudian menunaikan shalat Subuh secara berjamaah di masjid jami.'
+      },
+      {
+        arabic: 'أَتَنَاوَلُ الْفُطُوْرَ، ثُمَّ أَنْطَلِقُ إِلَى الْمَدْرَسَةِ فِي السَّاعَةِ السَّادِسَةِ وَالنِّصْفِ.',
+        transliteration: "Atanaawalul futhuur, tsumma antholiqu ilal madrasati fiis-saa'atis-saadisati wan-nishf.",
+        indonesian: 'Aku menyantap sarapan pagi, lalu bergegas menuju madrasah pada pukul setengah tujuh.'
+      }
+    ],
+    checkpointQuiz: {
+      question: "Manakah struktur Jumlah Fi'liyyah yang tepat dan selaras?",
+      options: [
+        'الطَّالِبُ يَكْتُبُ الدَّرْسَ',
+        'يَكْتُبُ الطَّالِبُ الدَّرْسَ',
+        'الدَّرْسَ يَكْتُبُ الطَّالِبُ',
+        'فِي الْفَصْلِ الطَّالِبُ'
+      ],
+      answerIndex: 1,
+      explanation: "Jumlah Fi'liyyah diawali dengan Fi'il (kata kerja) yaitu 'يَكْتُبُ', diikuti oleh Faa'il (pelaku marfu') yaitu 'الطَّالِبُ', lalu Maf'ul bih yaitu 'الدَّرْسَ'."
+    }
+  },
+  {
+    id: 'vid-bab-5',
+    bab: 5,
+    title: 'Hobi Positif & Pengembangan Bakat',
+    arabicTitle: 'الْهِوَايَاتُ النَّافِعَةُ وَالرِّيَاضَةُ',
+    description: 'Animasi pameran seni kaligrafi Arab (Khath Arabi), pidato khitabah 3 bahasa, memanah, berkuda, dan pertandingan futsal antar kelas Aliyah.',
+    duration: '4 Menit 40 Detik',
+    videoUrl: 'https://www.youtube.com/embed/n4fCkyq_f7o',
+    thumbnailDesc: 'Santri melukis kaligrafi indah Diwani dan latihan pidato khitabah di panggung aula',
+    keyPoints: [
+      'Kosakata hobi: الْخَطُّ الْعَرَبِيُّ (kaligrafi), الْقِرَاءَةُ (membaca), الْخِطَابَةُ (pidato), كُرَةُ الْقَدَمِ (sepakbola).',
+      'Pola huruf nashob An (أَنْ) yang memanshubkan fi\'il mudhari\' (أُحِبُّ أَنْ أَقْرَأَ).',
+      'Mengemukakan cita-cita dan minat santri dalam forum madrasah.',
+      'Keseimbangan antara kecerdasan rohani, intelektual, dan jasmani.'
+    ],
+    transcript: [
+      {
+        arabic: 'هَذَا يَوْمُ الْعُطْلَةِ، وَكُلُّ طَالِبٍ يُمَارِسُ هِوَايَتَهُ الْمُفَضَّلَةَ.',
+        transliteration: "Haadzaa yaumul 'uthlah, wa kullu thoolibin yumaarisu hiwaayatahull-mufadh-dholah.",
+        indonesian: 'Ini adalah hari libur, setiap siswa menyalurkan hobi kegemarannya.'
+      },
+      {
+        arabic: 'أَنَا أُحِبُّ أَنْ أَتَعَلَّمَ فَنَّ الْخَطِّ الْعَرَبِيِّ بِأَقْلَامِ الْقَصَبِ.',
+        transliteration: "Ana uhibbu an ata'allama fannal khotthil 'arabiyyi bi-aqlaamil qoshob.",
+        indonesian: 'Aku sangat suka belajar seni kaligrafi Arab menggunakan pena bambu tradisional.'
+      },
+      {
+        arabic: 'وَصَدِيْقِيْ يُرِيْدُ أَنْ يُشَارِكَ فِي مُسَابَقَةِ الْخِطَابَةِ بِاللُّغَةِ الْعَرَبِيَّةِ.',
+        transliteration: "Wa shodiiqii yuriidu an yusyaarika fii musaabaqatil khithoobati bil-lughatil 'arabiyyah.",
+        indonesian: 'Dan temanku ingin berpartisipasi dalam ajang perlombaan pidato bahasa Arab.'
+      }
+    ],
+    checkpointQuiz: {
+      question: "Mengapa kata kerja 'أَقْرَأَ' berharakat fathah pada 'أُحِبُّ أَنْ أَقْرَأَ'?",
+      options: [
+        'Karena didahului huruf jar min',
+        'Karena didahului huruf nashab An (أَنْ)',
+        'Karena menjadi maf\'ul muthlaq',
+        'Karena mengikuti harakat kata sebelumnya'
+      ],
+      answerIndex: 1,
+      explanation: "Huruf 'أَنْ' adalah amil nawashib (huruf pemanshub) yang menjadikan Fi'il Mudhari' berharakat akhir fathah (manshub)."
+    }
+  },
+  {
+    id: 'vid-bab-6',
+    bab: 6,
+    title: 'Adab Makan & Makanan Halalan Thayyiban',
+    arabicTitle: 'الطَّعَامُ وَالشَّرَابُ وَالْأَدَبُ النَّبَوِيُّ',
+    description: 'Animasi interaktif di kantin sehat madrasah, memesan menu makanan bergizi khas nusantara dan Timur Tengah, serta mempraktikkan sunnah Rasulullah SAW.',
+    duration: '5 Menit 15 Detik',
+    videoUrl: 'https://www.youtube.com/embed/5a67JtH-g2s',
+    thumbnailDesc: 'Suasana kantin bersih dengan hidangan halal dan siswa membaca doa sebelum makan',
+    keyPoints: [
+      'Kosakata makanan & minuman: الرُّزُّ (nasi), الدَّجَاجُ الْمَشْوِيُّ (ayam panggang), الْمَاءُ الصَّافِي (air jernih).',
+      'Pola Jumlah Ismiyyah (Mubtada dan Khabar).',
+      'Adab makan: membaca bismillah, menggunakan tangan kanan, tidak meniup hidangan panas.',
+      'Ungkapan kesyukuran: الْحَمْدُ لِلّٰهِ الَّذِيْ أَطْعَمَنَا وَسَقَانَا.'
+    ],
+    transcript: [
+      {
+        arabic: 'الطَّعَامُ فِي مَقْصَفِ الْمَدْرَسَةِ حَلَالٌ، طَيِّبٌ، وَنَظِيْفٌ.',
+        transliteration: "Ath-tho'aamu fii maqhshofil madrasati halaalun, thoyyibun, wa nazhiif.",
+        indonesian: 'Makanan di kantin madrasah halal, berkualitas baik, dan bersih higienis.'
+      },
+      {
+        arabic: 'سَمِّ اللهَ يَا غُلَامُ، وَكُلْ بِيَمِيْنِكَ، وَكُلْ مِمَّا يَلِيْكَ كَمَا وَصَّى النَّبِيُّ.',
+        transliteration: "Sammillaaha yaa ghulaam, wa kul biyamiinika, wa kul mimmaa yaliika kamaa wash-shon-nabiyy.",
+        indonesian: 'Sebutlah nama Allah wahai ananda, makanlah dengan tangan kananmu, dan makanlah makanan yang dekat denganmu seperti wasiat Nabi.'
+      },
+      {
+        arabic: 'الْفَوَاكِهُ الطَّازَجَةُ مُفِيْدَةٌ لِصِحَّةِ الْجِسْمِ وَقُوَّةِ الْعَقْلِ.',
+        transliteration: "Al-fawaakihuth-thoazijatu mufiidatun lishihhatil jismi wa quwwatil 'aql.",
+        indonesian: 'Buah-buahan segar sangat bermanfaat bagi kesehatan jasmani dan ketajaman daya nalar.'
+      }
+    ],
+    checkpointQuiz: {
+      question: "Dalam kalimat 'الطَّعَامُ لَذِيْذٌ', manakah kedudukan kata 'الطَّعَامُ'?",
+      options: [
+        'Khabar marfu\'',
+        'Mubtada\' marfu\' dengan dhommah',
+        'Faa\'il maf\'ul',
+        'Na\'at majrur'
+      ],
+      answerIndex: 1,
+      explanation: "Kata 'الطَّعَامُ' adalah isim ma'rifat di awal kalimat yang berkedudukan sebagai Mubtada' marfu' dengan harakat akhir dhommah."
+    }
+  }
 ];

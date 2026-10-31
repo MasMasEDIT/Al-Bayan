@@ -23,6 +23,8 @@ import {
   Clock,
   ChevronRight,
   Zap,
+  Gamepad2,
+  Film,
 } from 'lucide-react';
 
 interface DashboardViewProps {
@@ -241,6 +243,69 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
             </button>
           </div>
         )}
+      </div>
+
+      {/* Interactive Spotlight: Game Seru & Video Animasi (New Features) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Card 1: Game Edukasi Interaktif */}
+        <div
+          onClick={() => onNavigate('games')}
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#082820] to-[#041a15] p-6 text-white border-2 border-amber-400/40 shadow-xl hover:border-amber-400 hover:scale-[1.01] transition-all cursor-pointer group"
+        >
+          <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
+          <div className="relative z-10 flex items-start justify-between">
+            <div className="p-3 rounded-2xl bg-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/30 group-hover:rotate-6 transition-transform">
+              <Gamepad2 className="w-6 h-6" />
+            </div>
+            <span className="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40">
+              Bonus XP Santri
+            </span>
+          </div>
+
+          <div className="relative z-10 mt-4">
+            <h3 className="text-xl font-extrabold text-white group-hover:text-amber-300 transition-colors">
+              Game Interaktif Bahasa Arab
+            </h3>
+            <p className="text-xs text-emerald-200/80 mt-1 leading-relaxed">
+              Mainkan 3 arena seru: Tebak Cepat Mufrodat (timer 30 dtk), Susun Kalimat (Tarkib), dan Sortir Aqsamul Kalam (Isim, Fi'il, Huruf).
+            </p>
+
+            <div className="mt-4 pt-3 border-t border-emerald-900/60 flex items-center justify-between text-xs font-bold text-amber-300">
+              <span>Mulai Bermain & Kumpulkan XP</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+        </div>
+
+        {/* Card 2: Video Animasi Pembelajaran */}
+        <div
+          onClick={() => onNavigate('videos')}
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#062624] to-[#031c19] p-6 text-white border-2 border-emerald-400/40 shadow-xl hover:border-emerald-400 hover:scale-[1.01] transition-all cursor-pointer group"
+        >
+          <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+          <div className="relative z-10 flex items-start justify-between">
+            <div className="p-3 rounded-2xl bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/30 group-hover:rotate-6 transition-transform">
+              <Film className="w-6 h-6" />
+            </div>
+            <span className="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-emerald-400/20 text-emerald-200 border border-emerald-400/40">
+              6 Bab KMA 183
+            </span>
+          </div>
+
+          <div className="relative z-10 mt-4">
+            <h3 className="text-xl font-extrabold text-white group-hover:text-emerald-300 transition-colors">
+              Video Animasi Pembelajaran
+            </h3>
+            <p className="text-xs text-emerald-200/80 mt-1 leading-relaxed">
+              Tonton kartun animasi santri Aliyah dengan transkrip interaktif, audio pengucapan fasih, serta kuis pemahaman tiap bab.
+            </p>
+
+            <div className="mt-4 pt-3 border-t border-emerald-900/60 flex items-center justify-between text-xs font-bold text-emerald-300">
+              <span>Putar Video Animasi Santri</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Rotating Daily Mahfudzot / Hadits Audio Player */}

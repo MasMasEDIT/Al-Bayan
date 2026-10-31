@@ -14,6 +14,8 @@ import {
   GraduationCap,
   BookOpenCheck,
   RotateCw,
+  Gamepad2,
+  Film,
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -27,6 +29,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 
   const navItems = [
     { id: 'dashboard', label: 'Beranda', icon: LayoutDashboard },
+    { id: 'games', label: 'Game Seru (XP)', icon: Gamepad2 },
+    { id: 'videos', label: 'Video Animasi', icon: Film },
     { id: 'mufrodat', label: 'Mufrodat MA', icon: BookOpen },
     { id: 'qawaid', label: 'Qawa\'id MA', icon: Compass },
     { id: 'hiwar', label: 'Hiwar Santri', icon: MessageSquare },
@@ -107,6 +111,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
               )}
               <RotateCw className="w-3 h-3 text-slate-400 opacity-60" />
             </button>
+
+            {/* Copyright DikoSaputra Badge */}
+            <div className="hidden lg:flex items-center text-[10px] font-bold text-amber-300 bg-amber-500/15 border border-amber-400/30 px-2.5 py-1 rounded-full shadow-xs">
+              <span>© DikoSaputra</span>
+            </div>
 
             {/* User Stats Badges (Streak & XP) */}
             {userProfile && (

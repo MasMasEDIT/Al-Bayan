@@ -45,6 +45,15 @@ export interface QuizResult {
   completedAt: string;
 }
 
+export interface GameScore {
+  userId: string;
+  gameId: string;
+  gameTitle: string;
+  score: number;
+  xpEarned: number;
+  playedAt: string;
+}
+
 export interface MufrodatItem {
   id: string;
   chapter: string; // e.g. "Bab 1: التحيات والتعارف"
@@ -101,6 +110,29 @@ export interface HiwarItem {
   situation: string;
   contextDesc: string;
   dialogues: HiwarDialogue[];
+}
+
+export interface VideoLessonItem {
+  id: string;
+  bab: number;
+  title: string;
+  arabicTitle: string;
+  description: string;
+  duration: string;
+  videoUrl: string; // YouTube embed URL
+  thumbnailDesc: string;
+  keyPoints: string[];
+  transcript: {
+    arabic: string;
+    transliteration: string;
+    indonesian: string;
+  }[];
+  checkpointQuiz?: {
+    question: string;
+    options: string[];
+    answerIndex: number;
+    explanation: string;
+  };
 }
 
 export interface SentenceAnalysis {
