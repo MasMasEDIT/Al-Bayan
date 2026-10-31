@@ -107,7 +107,7 @@ export const SavedWordsView: React.FC = () => {
 
           <button
             onClick={() => setIsAddModalOpen(true)}
-            className="flex items-center gap-1.5 py-2 px-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 py-2 px-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs transition-colors cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Tambah Kata Baru</span>
@@ -130,7 +130,7 @@ export const SavedWordsView: React.FC = () => {
           </div>
           <button
             onClick={() => setIsAddModalOpen(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-700 text-white text-xs font-bold rounded-xl hover:bg-emerald-800 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-sky-600 text-white text-xs font-bold rounded-xl hover:bg-sky-700 transition-colors cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Tambah Kosakata Pertama</span>
@@ -148,10 +148,10 @@ export const SavedWordsView: React.FC = () => {
 
           <div
             onClick={() => setIsFlipped(!isFlipped)}
-            className="min-h-[280px] bg-gradient-to-br from-white to-emerald-50/50 rounded-3xl p-8 border-2 border-emerald-200 shadow-lg cursor-pointer flex flex-col justify-between items-center text-center transition-all hover:scale-[1.01]"
+            className="min-h-[280px] bg-gradient-to-br from-white to-sky-50/50 rounded-3xl p-8 border-2 border-sky-200 shadow-lg cursor-pointer flex flex-col justify-between items-center text-center transition-all hover:scale-[1.01]"
           >
             <div className="w-full flex justify-between items-center text-xs">
-              <span className="px-2.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold text-[10px]">
+              <span className="px-2.5 py-0.5 rounded-md bg-sky-100 text-sky-800 font-bold text-[10px]">
                 {currentFlashcard.category || 'Kosakata'}
               </span>
               <button
@@ -159,7 +159,7 @@ export const SavedWordsView: React.FC = () => {
                   e.stopPropagation();
                   speakArabic(currentFlashcard.arabic);
                 }}
-                className="p-1.5 rounded-lg text-emerald-700 hover:bg-emerald-100 transition-colors"
+                className="p-1.5 rounded-lg text-sky-700 hover:bg-sky-100 transition-colors"
                 title="Dengarkan pengucapan"
               >
                 <Volume2 className="w-4 h-4" />
@@ -172,7 +172,7 @@ export const SavedWordsView: React.FC = () => {
                   {currentFlashcard.arabic}
                 </p>
                 {currentFlashcard.transliteration && (
-                  <p className="text-sm font-semibold text-emerald-700 mt-2">
+                  <p className="text-sm font-semibold text-sky-700 mt-2">
                     {currentFlashcard.transliteration}
                   </p>
                 )}
@@ -186,7 +186,7 @@ export const SavedWordsView: React.FC = () => {
                 <p className="text-2xl font-bold text-slate-900">
                   {currentFlashcard.meaning}
                 </p>
-                <p className="font-arabic text-xl text-emerald-800 font-bold mt-3">
+                <p className="font-arabic text-xl text-sky-800 font-bold mt-3">
                   {currentFlashcard.arabic}
                 </p>
                 <p className="text-[11px] text-slate-400 mt-4 flex items-center justify-center gap-1">
@@ -219,7 +219,7 @@ export const SavedWordsView: React.FC = () => {
                 setIsFlipped(false);
               }}
               disabled={cardIndex === savedWords.length - 1}
-              className="flex-1 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition-colors disabled:opacity-40 cursor-pointer"
+              className="flex-1 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition-colors disabled:opacity-40 cursor-pointer"
             >
               Berikutnya
             </button>
@@ -231,7 +231,7 @@ export const SavedWordsView: React.FC = () => {
           {savedWords.map((word) => (
             <div
               key={word.wordId}
-              className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-xs flex flex-col justify-between hover:border-emerald-300 transition-colors"
+              className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-xs flex flex-col justify-between hover:border-sky-300 transition-colors"
             >
               <div>
                 <div className="flex items-center justify-between text-xs mb-2">
@@ -241,7 +241,7 @@ export const SavedWordsView: React.FC = () => {
                   <div className="flex items-center gap-1">
                     <button
                       onClick={() => speakArabic(word.arabic)}
-                      className="p-1 rounded-md text-emerald-700 hover:bg-emerald-50 transition-colors cursor-pointer"
+                      className="p-1 rounded-md text-sky-700 hover:bg-sky-50 transition-colors cursor-pointer"
                       title="Dengarkan pengucapan"
                     >
                       <Volume2 className="w-4 h-4" />
@@ -263,7 +263,7 @@ export const SavedWordsView: React.FC = () => {
                 </div>
 
                 {word.transliteration && (
-                  <p className="text-xs font-semibold text-emerald-700">
+                  <p className="text-xs font-semibold text-sky-700">
                     {word.transliteration}
                   </p>
                 )}
@@ -287,7 +287,7 @@ export const SavedWordsView: React.FC = () => {
           <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="font-bold text-base text-slate-900 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-emerald-600" />
+                <Sparkles className="w-4 h-4 text-sky-600" />
                 <span>Tambah Kosakata Kustom</span>
               </h3>
               <button
@@ -307,7 +307,7 @@ export const SavedWordsView: React.FC = () => {
                   placeholder="Contoh: مَسْجِدٌ"
                   value={newArabic}
                   onChange={(e) => setNewArabic(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 text-lg font-arabic font-bold text-right focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                  className="w-full p-2.5 rounded-xl border border-slate-200 text-lg font-arabic font-bold text-right focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500"
                 />
               </div>
 
@@ -318,7 +318,7 @@ export const SavedWordsView: React.FC = () => {
                   placeholder="Contoh: Masjidun"
                   value={newTrans}
                   onChange={(e) => setNewTrans(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                  className="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500"
                 />
               </div>
 
@@ -330,7 +330,7 @@ export const SavedWordsView: React.FC = () => {
                   placeholder="Contoh: Masjid / Tempat Ibadah"
                   value={newMeaning}
                   onChange={(e) => setNewMeaning(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                  className="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500"
                 />
               </div>
 
@@ -341,7 +341,7 @@ export const SavedWordsView: React.FC = () => {
                   placeholder="Contoh: Tempat / Bangunan"
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                  className="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500"
                 />
               </div>
 
@@ -356,7 +356,7 @@ export const SavedWordsView: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSaving || !newArabic || !newMeaning}
-                  className="px-5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold transition-colors cursor-pointer disabled:opacity-50"
+                  className="px-5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold transition-colors cursor-pointer disabled:opacity-50"
                 >
                   {isSaving ? 'Menyimpan...' : 'Simpan ke Firestore'}
                 </button>

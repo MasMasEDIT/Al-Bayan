@@ -13,6 +13,8 @@ export const MUFRODAT_DATA: MufrodatItem[] = [
     exampleArabic: 'السَّلَامُ عَلَيْكُمْ يَا زُمَلَائِيْ فِي الْفَصْلِ الْعَاشِرِ',
     exampleTrans: 'Assalaamu \'alaikum yaa zumalaa-ii fil fashlil \'aasyir',
     exampleMeaning: 'Keselamatan bagi kalian wahai teman-teman sekelasku di kelas 10',
+    mnemonicTip: 'Salam agung pembuka setiap interaksi santri, mengandung 3 doa: Selamat, Rahmat, dan Berkah!',
+    mood: 'dasar'
   },
   {
     id: 'muf-ma-2',
@@ -25,6 +27,8 @@ export const MUFRODAT_DATA: MufrodatItem[] = [
     exampleArabic: 'هَذِهِ بِطَاقَتِي الشَّخْصِيَّةُ فِي الْمَدْرَسَةِ الثَّانَوِيَّةِ الْإِسْلَامِيَّةِ',
     exampleTrans: 'Haadzihi bithaaqatiisy-syakhshiyyatu fil madrasatits-tsaanawiyyatil islaamiyyah',
     exampleMeaning: 'Ini kartu pelajar saya di Madrasah Aliyah',
+    mnemonicTip: 'Ingat "Bithaaqah" bunyi mirip "Tiket/Kartu", dan "Syakhshiyyah" adalah "Personal/Identitas Diri".',
+    mood: 'akademik'
   },
   {
     id: 'muf-ma-3',
@@ -37,6 +41,8 @@ export const MUFRODAT_DATA: MufrodatItem[] = [
     exampleArabic: 'أَنَا طَالِبٌ جَدِيْدٌ فِي هَذِهِ الْمَدْرَسَةِ الْفَاضِلَةِ',
     exampleTrans: 'Ana thoolibun jadiidun fii haadzihil madrasatil faadhilah',
     exampleMeaning: 'Saya adalah siswa baru di madrasah yang mulia ini',
+    mnemonicTip: 'Thalib = Pencari (ilmu), Jadiid = Baru (mirip kata modern/baru). Pasangan Na\'at Man\'ut yang serasi!',
+    mood: 'dasar'
   },
   {
     id: 'muf-ma-4',
@@ -49,6 +55,8 @@ export const MUFRODAT_DATA: MufrodatItem[] = [
     exampleArabic: 'أَهْلًا يَا أَخِيْ، تَشَرَّفْنَا بِمَعْرِفَتِكَ الْكَرِيْمَةِ',
     exampleTrans: 'Ahlan yaa akhii, tasyarrafnaa bima\'rifatikal kariimah',
     exampleMeaning: 'Selamat datang wahai saudaraku, kami terhormat berkenalan denganmu',
+    mnemonicTip: 'Ingat kata "Syarif/Tasyarruf" (Kehormatan/Mulia). Gunakan untuk membuat lawan bicara merasa dihargai!',
+    mood: 'gaul'
   },
   {
     id: 'muf-ma-5',
@@ -56,11 +64,13 @@ export const MUFRODAT_DATA: MufrodatItem[] = [
     category: 'Identitas Santri / Siswa',
     arabic: 'مَسْقَطُ الرَّأْسِ',
     transliteration: 'Masqathur-ra\'si',
-    meaning: 'Tempat kelahiran (TTL)',
+    meaning: 'Tempat kelahiran (Tempat Tanggal Lahir)',
     wordType: 'Isim',
     exampleArabic: 'مَسْقَطُ رَأْسِيْ فِيْ مَدِيْنَةِ بَانْدُوْنْج',
     exampleTrans: 'Masqathu ra\'sii fii madiinati Bandung',
     exampleMeaning: 'Tempat kelahiran saya adalah di kota Bandung',
+    mnemonicTip: 'Harfiah: "Tempat jatuhnya kepala saat bayi lahir ke dunia" = Kota Tempat Kelahiran!',
+    mood: 'akademik'
   },
   {
     id: 'muf-ma-6',
@@ -68,11 +78,13 @@ export const MUFRODAT_DATA: MufrodatItem[] = [
     category: 'Identitas Santri / Siswa',
     arabic: 'الْعُنْوَانُ',
     transliteration: 'Al-\'unwaanu',
-    meaning: 'Alamat tempat tinggal',
+    meaning: 'Alamat tempat tinggal / Domisili',
     wordType: 'Isim',
     exampleArabic: 'عُنْوَانُ بَيْتِيْ فِي شَارِعِ سُوْدِيْرْمَان رَقْمَ عَشَرَةٍ',
     exampleTrans: '\'Unwaanu baitii fii syaari\'i Sudirman raqma \'asyarah',
     exampleMeaning: 'Alamat rumahku di Jalan Sudirman nomor 10',
+    mnemonicTip: 'Unwan = Judul atau Alamat rumah yang dituju saat mengirim paket atau bersilaturahmi.',
+    mood: 'keseharian'
   },
 
   // ================= BAB 2: الْأُسْرَةُ وَالْبَيْتُ (Keluarga & Tempat Tinggal) =================
@@ -87,6 +99,8 @@ export const MUFRODAT_DATA: MufrodatItem[] = [
     exampleArabic: 'نَعِيْشُ فِي أُسْرَةٍ مِثَالِيَّةٍ سَعِيْدَةٍ',
     exampleTrans: 'Na\'iisyu fii usratin mitsaaliyyatin sa\'iidah',
     exampleMeaning: 'Kami hidup dalam keluarga teladan yang bahagia',
+    mnemonicTip: 'Mitsali = Contoh/Misal/Teladan yang patut dicontoh masyarakat santri.',
+    mood: 'keseharian'
   },
   {
     id: 'muf-ma-8',
@@ -99,6 +113,8 @@ export const MUFRODAT_DATA: MufrodatItem[] = [
     exampleArabic: 'بِرُّ الْوَالِدَيْنِ وَاجِبٌ شَرْعِيٌّ عَلَى كُلِّ مُسْلِمٍ',
     exampleTrans: 'Birrul waalidaini waajibun syar\'iyyun \'alaa kulli muslim',
     exampleMeaning: 'Berbakti kepada kedua orang tua adalah kewajiban syar\'i bagi setiap muslim',
+    mnemonicTip: 'Bentuk mutsanna (dua orang): Walid + Kariim + alif nun (ـَانِ) = Dua orang tua mulia.',
+    mood: 'keseharian'
   },
   {
     id: 'muf-ma-9',
@@ -106,11 +122,13 @@ export const MUFRODAT_DATA: MufrodatItem[] = [
     category: 'Rumah & Ruangan',
     arabic: 'غُرْفَةُ الْمُذَاكَرَةِ',
     transliteration: 'Ghurfatul mudzaakarah',
-    meaning: 'Ruang belajar / Ruang mengulang pelajaran',
+    meaning: 'Ruang belajar / Ruang mengulang hafalan',
     wordType: 'Isim',
     exampleArabic: 'أُذَاكِرُ دُرُوْسِيْ فِي غُرْفَةِ الْمُذَاكَرَةِ كُلَّ مَسَاءٍ',
     exampleTrans: 'Utsaakiru duruusii fii ghurfatil mudzaakarati kulla masaa\'',
     exampleMeaning: 'Saya mengulang pelajaran di ruang belajar setiap petang',
+    mnemonicTip: 'Dari akar kata "Dzikr/Ingat" -> Ruang untuk mengingat kembali pelajaran kelas.',
+    mood: 'akademik'
   },
   {
     id: 'muf-ma-10',
@@ -118,11 +136,13 @@ export const MUFRODAT_DATA: MufrodatItem[] = [
     category: 'Rumah & Ruangan',
     arabic: 'غُرْفَةُ الْجُلُوْسِ',
     transliteration: 'Ghurfatul juluus',
-    meaning: 'Ruang tamu / Ruang keluarga',
+    meaning: 'Ruang tamu / Ruang santai keluarga',
     wordType: 'Isim',
     exampleArabic: 'تَجْتَمِعُ الْأُسْرَةُ فِي غُرْفَةِ الْجُلُوْسِ بَعْدَ صَلَاةِ الْمَغْرِبِ',
     exampleTrans: 'Tajtami\'ul usratu fii ghurfatil juluusi ba\'da shalaatil maghrib',
     exampleMeaning: 'Keluarga berkumpul di ruang tamu setelah shalat Maghrib',
+    mnemonicTip: 'Dari kata "Jalasa - Yajlisu" (Duduk) -> Ruangan khusus tempat duduk berbincang santai.',
+    mood: 'keseharian'
   },
   {
     id: 'muf-ma-11',
@@ -130,11 +150,13 @@ export const MUFRODAT_DATA: MufrodatItem[] = [
     category: 'Aktivitas Rumah',
     arabic: 'يُسَاعِدُ - يُسَاعِدَانِ',
     transliteration: 'Yusaa\'idu - Yusaa\'idaani',
-    meaning: 'Membantu / Menolong',
+    meaning: 'Membantu / Menolong dengan tulus',
     wordType: 'Fi\'il',
     exampleArabic: 'الْوَلَدُ الصَّالِحُ يُسَاعِدُ أَبَاهُ فِي أَعْمَالِ الْبَيْتِ',
     exampleTrans: 'Al-waladush-shaalihu yusaa\'idu abaahu fii a\'maalil bait',
     exampleMeaning: 'Anak yang saleh membantu ayahnya dalam pekerjaan rumah',
+    mnemonicTip: 'Dari wazan saa\'ada (saling membantu). Ingat ungkapan santri: "Musa\'adah" = Bantuan.',
+    mood: 'keseharian'
   },
 
   // ================= BAB 3: الْمَدْرَسَةُ وَمَرَافِقُهَا (Madrasah & Fasilitas Belajar) =================
@@ -510,6 +532,29 @@ export const HIWAR_DATA: HiwarItem[] = [
         arabic: 'اِسْمِيْ نَوْفَلُ. أَهْلًا وَسَهْلًا بِكَ يَا فَرْحَانُ فِي مَدْرَسَتِنَا الثَّانَوِيَّةِ!',
         transliteration: 'Ismii Naufal. Ahlan wa sahlan bika yaa Farhan fii madrasatinats-tsaanawiyyah!',
         meaning: 'Nama saya Naufal. Selamat datang wahai Farhan di Madrasah Aliyah kita ini!',
+        roleplayChoice: {
+          question: 'Farhan bertanya "مَا اسْمُكَ الْكَرِيْمُ؟" (Siapa namamu?). Bagaimana caramu menjawab perkenalan dengan sopan?',
+          choices: [
+            {
+              text: 'Memperkenalkan nama sendiri & menyambutnya hangat',
+              arabic: 'اِسْمِيْ نَوْفَلُ. أَهْلًا وَسَهْلًا بِكَ يَا فَرْحَانُ!',
+              isCorrect: true,
+              feedback: 'Mumtaz! Jawaban ini sangat ramah, memperkenalkan nama dan mengucapkan Ahlan wa Sahlan.'
+            },
+            {
+              text: 'Mengatakan bahwa kamu sedang lapar',
+              arabic: 'أَنَا جَوْعَانُ وَأُرِيْدُ أَنْ آكُلَ فِي الْمَقْصَفِ',
+              isCorrect: false,
+              feedback: 'Kurang tepat. Menjawab pertanyaan nama dengan lapar tidak relevan saat ta\'aruf santri.'
+            },
+            {
+              text: 'Langsung pamit pergi',
+              arabic: 'إِلَى اللِّقَاءِ مَعَ السَّلَامَةِ',
+              isCorrect: false,
+              feedback: 'Kurang sopan jika langsung berpamitan sebelum memperkenalkan nama.'
+            }
+          ]
+        }
       },
       {
         speaker: 'Farhan',
@@ -1008,5 +1053,38 @@ export const VIDEO_LESSONS_DATA: VideoLessonItem[] = [
       answerIndex: 1,
       explanation: "Kata 'الطَّعَامُ' adalah isim ma'rifat di awal kalimat yang berkedudukan sebagai Mubtada' marfu' dengan harakat akhir dhommah."
     }
+  }
+];
+
+export const MODERN_SANTRI_PHRASES = [
+  {
+    arabic: 'لَا تَقْلَقْ، كُلُّ شَيْءٍ سَيَكُوْنُ عَلَى مَا يُرَامُ!',
+    transliteration: 'Laa taqlaq, kullu syai-in sayakuunu \'alaa maa yuraam!',
+    meaning: 'Jangan panik/cemas, semua bakal baik-baik saja dan beres!',
+    context: 'Ucapan motivasi santun saat teman cemas menghadapi ujian atau tugas madrasah.'
+  },
+  {
+    arabic: 'فِكْرَةٌ رَائِعَةٌ جِدًّا، أَنَا مَعَكَ!',
+    transliteration: 'Fikratun raa-i\'atun jiddan, ana ma\'aka!',
+    meaning: 'Ide yang keren banget, aku sepakat dan ikut bersamamu!',
+    context: 'Digunakan saat menyetujui usulan seru dari teman sekelompok di kelas 10.'
+  },
+  {
+    arabic: 'بِكُلِّ سُرُوْرٍ، فِي أَيِّ وَقْتٍ!',
+    transliteration: 'Bikulli suruur, fii ayyi waqtin!',
+    meaning: 'Dengan senang hati, kapan saja (Anytime)!',
+    context: 'Jawaban gaul santun saat seseorang berterima kasih atas bantuanmu.'
+  },
+  {
+    arabic: 'بِالتَّوْفِيْقِ وَالنَّجَاحِ الدَّائِمِ!',
+    transliteration: 'Bittaufiiqi wan-najaahid-daa-imi!',
+    meaning: 'Semoga sukses selalu dan penuh keberkahan!',
+    context: 'Doa persahabatan saat teman mengikuti lomba pidato, futsal, atau ujian semester.'
+  },
+  {
+    arabic: 'مَا شَاءَ اللهُ تَبَارَكَ اللهُ، هَذَا رَائِعٌ!',
+    transliteration: 'Maa syaa-Allaahu tabaarakallaahu, haadzaa raa-i\'un!',
+    meaning: 'Masya Allah Tabarakallah, ini luar biasa mengagumkan!',
+    context: 'Apresiasi islami saat melihat karya kaligrafi atau prestasi gemilang teman.'
   }
 ];

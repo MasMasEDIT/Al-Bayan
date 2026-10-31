@@ -124,13 +124,13 @@ Silakan tulis pertanyaan Anda di bawah ini!`,
       {/* Title */}
       <div className="flex items-center justify-between border-b border-slate-200/80 pb-3">
         <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center shadow-xs">
+          <div className="w-9 h-9 rounded-xl bg-sky-600 text-white flex items-center justify-center shadow-xs">
             <BotMessageSquare className="w-5 h-5" />
           </div>
           <div>
             <h1 className="text-lg font-bold text-slate-900 flex items-center gap-2">
               <span>Tutor AI Ustadz Al-Bayan</span>
-              <span className="font-arabic text-emerald-800 text-base font-bold">المُعَلِّمُ الذَّكِيّ</span>
+              <span className="font-arabic text-sky-700 text-base font-bold">المُعَلِّمُ الذَّكِيّ</span>
             </h1>
             <p className="text-[11px] text-slate-500">
               Tanyakan kaidah nahwu, mufrodat, atau percakapan bahasa Arab 24/7.
@@ -165,7 +165,7 @@ Silakan tulis pertanyaan Anda di bawah ini!`,
               className={`flex gap-3 items-start ${isUser ? 'justify-end' : 'justify-start'}`}
             >
               {!isUser && (
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-700 to-teal-600 text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-xs">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-blue-600 text-white flex items-center justify-center shrink-0 text-xs font-bold shadow-xs">
                   <span className="font-arabic text-sm">ب</span>
                 </div>
               )}
@@ -173,7 +173,7 @@ Silakan tulis pertanyaan Anda di bawah ini!`,
               <div
                 className={`max-w-2xl rounded-2xl p-4 text-xs sm:text-sm leading-relaxed ${
                   isUser
-                    ? 'bg-emerald-700 text-white rounded-tr-xs'
+                    ? 'bg-sky-600 text-white rounded-tr-xs'
                     : 'bg-slate-50 border border-slate-200 text-slate-800 rounded-tl-xs space-y-2'
                 }`}
               >
@@ -184,7 +184,7 @@ Silakan tulis pertanyaan Anda di bawah ini!`,
                   <div className="pt-2 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-slate-500">
                     <button
                       onClick={() => handleSpeakArabicInText(m.text)}
-                      className="flex items-center gap-1 text-emerald-800 hover:text-emerald-950 font-semibold cursor-pointer"
+                      className="flex items-center gap-1 text-sky-700 hover:text-sky-900 font-semibold cursor-pointer"
                     >
                       <Volume2 className="w-3.5 h-3.5" />
                       <span>Dengarkan Teks Arab</span>
@@ -205,11 +205,11 @@ Silakan tulis pertanyaan Anda di bawah ini!`,
 
         {loading && (
           <div className="flex gap-3 items-center text-slate-500 text-xs py-2">
-            <div className="w-8 h-8 rounded-xl bg-emerald-700 text-white flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-xl bg-sky-600 text-white flex items-center justify-center shrink-0">
               <Loader2 className="w-4 h-4 animate-spin" />
             </div>
             <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200 text-xs flex items-center gap-2">
-              <span className="font-arabic font-bold text-emerald-800 text-sm">يَكْتُبُ...</span>
+              <span className="font-arabic font-bold text-sky-700 text-sm">يَكْتُبُ...</span>
               <span>Ustadz sedang menyusun jawaban berharakat...</span>
             </div>
           </div>
@@ -225,7 +225,7 @@ Silakan tulis pertanyaan Anda di bawah ini!`,
             key={idx}
             onClick={() => handleSend(prompt)}
             disabled={loading}
-            className="px-3 py-1 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200/60 text-[11px] font-medium whitespace-nowrap transition-colors cursor-pointer shrink-0 disabled:opacity-50"
+            className="px-3 py-1 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-200/60 text-[11px] font-medium whitespace-nowrap transition-colors cursor-pointer shrink-0 disabled:opacity-50"
           >
             {prompt}
           </button>
@@ -248,7 +248,7 @@ Silakan tulis pertanyaan Anda di bawah ini!`,
         <button
           onClick={() => handleSend()}
           disabled={loading || !inputText.trim()}
-          className="p-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl transition-all cursor-pointer disabled:opacity-40"
+          className="p-3 bg-sky-600 hover:bg-sky-700 text-white rounded-xl transition-all cursor-pointer disabled:opacity-40"
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
         </button>

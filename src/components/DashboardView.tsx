@@ -25,6 +25,9 @@ import {
   Zap,
   Gamepad2,
   Film,
+  Gift,
+  Star,
+  Check
 } from 'lucide-react';
 
 interface DashboardViewProps {
@@ -32,7 +35,7 @@ interface DashboardViewProps {
 }
 
 export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
-  const { userProfile, savedWords, progressList, quizResults } = useAuth();
+  const { userProfile, savedWords, progressList, quizResults, awardXP } = useAuth();
   const isGuru = userProfile?.role === 'guru';
 
   // Rotating Arabic Wisdom Quotes (Mahfudzot & Hadits)
@@ -66,11 +69,56 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
   const [activeQuoteIdx, setActiveQuoteIdx] = useState<number>(0);
   const currentQuote = quotesList[activeQuoteIdx];
 
+  // Daily Mystery Gift State
+  const [mysteryClaimed, setMysteryClaimed] = useState<boolean>(() => {
+    return localStorage.getItem('albayan_daily_mystery_date') === new Date().toDateString();
+  });
+  const [showMysteryAlert, setShowMysteryAlert] = useState<boolean>(false);
+
+  const handleClaimMystery = async () => {
+    if (mysteryClaimed) return;
+    setMysteryClaimed(true);
+    setShowMysteryAlert(true);
+    localStorage.setItem('albayan_daily_mystery_date', new Date().toDateString());
+    await awardXP(15);
+  };
+
   const nextQuote = () => {
     setActiveQuoteIdx((prev) => (prev + 1) % quotesList.length);
   };
 
-  const completedLessonsCount = progressList.filter((p) => p.completed).length;
+  // Rank / Level Progression Calculation
+  const currentXP = userProfile?.xp || 0;
+  let levelTitle = 'Santri Baru';
+  let nextLevelXP = 100;
+  let prevLevelXP = 0;
+
+  if (currentXP < 100) {
+    levelTitle = 'Santri Baru (Pemula)';
+    nextLevelXP = 100;
+    prevLevelXP = 0;
+  } else if (currentXP < 300) {
+    levelTitle = 'Santri Teladan (Menengah)';
+    nextLevelXP = 300;
+    prevLevelXP = 100;
+  } else if (currentXP < 600) {
+    levelTitle = 'Bintang Kelas Aliyah';
+    nextLevelXP = 600;
+    prevLevelXP = 300;
+  } else if (currentXP < 1000) {
+    levelTitle = 'Duta Bahasa Arab MA';
+    nextLevelXP = 1000;
+    prevLevelXP = 600;
+  } else {
+    levelTitle = 'Syabab Lughowi (Mahir / Ustadz Muda)';
+    nextLevelXP = 2000;
+    prevLevelXP = 1000;
+  }
+
+  const progressPercent = Math.min(
+    100,
+    Math.round(((currentXP - prevLevelXP) / (nextLevelXP - prevLevelXP)) * 100)
+  );
 
   // 6 Bab Silabus Kelas 10 MA (KMA 183)
   const chaptersMA = [
@@ -141,76 +189,80 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
   return (
     <div className="space-y-8 max-w-6xl mx-auto pb-14">
       
-      {/* Royal Forest Emerald Hero Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#06211a] via-[#0b3328] to-[#071c16] text-white p-6 sm:p-8 border border-amber-500/25 shadow-xl shadow-emerald-950/20">
-        {/* Islamic Subtle Star Background Pattern */}
+      {/* Royal Forest Emerald Hero Banner replaced with Deep Sapphire & Light Blue */}
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#07172b] via-[#0b2b4d] to-[#07172b] text-white p-6 sm:p-8 border border-amber-500/25 shadow-xl shadow-sky-950/20">
         <div className="absolute top-0 right-0 w-96 h-96 bg-radial from-amber-400/10 via-transparent to-transparent pointer-events-none" />
         
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/80 text-amber-300 text-xs font-bold border border-amber-500/30 backdrop-blur-md">
+            <div className="flex items-center gap-2 text-xs text-amber-300 font-bold">
               <span className="font-arabic text-sm">صَبَاحُ الْخَيْرِ وَالسُّرُوْرِ</span>
-              <span>•</span>
+              <span aria-hidden="true">·</span>
               <span>{isGuru ? 'Portal Pendidik Bahasa Arab MA' : 'Ruang Belajar Santri Kelas 10 MA'}</span>
+              <span aria-hidden="true">·</span>
+              <span className="text-sky-300">DikoSaputra</span>
             </div>
 
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white">
               Ahlan wa Sahlan, {userProfile?.displayName || 'Penuntut Ilmu'}!
             </h1>
 
-            <p className="text-emerald-100/80 text-xs sm:text-sm max-w-2xl leading-relaxed">
-              Selamat datang di media pembelajaran interaktif Bahasa Arab Kelas X Madrasah Aliyah berdasar kurikulum Kemenag KMA 183.
+            <p className="text-sky-100/90 text-xs sm:text-sm max-w-2xl leading-relaxed">
+              Media pembelajaran interaktif Bahasa Arab Kelas 10 Madrasah Aliyah kurikulum Kemenag KMA 183.
               {isGuru 
                 ? ' Akses perangkat pembelajaran terstruktur, capaian pembelajaran (CP), serta generator instrumen bank soal ujian.'
-                : ' Tingkatkan kefasihan lisan (Kalam), hafalan kosakata (Mufrodat), kaidah Nahwu-Shorof, dan kumpulkan skor XP harian Anda.'}
+                : ' Asah hafalan dengan Flashcard Mnemonic 3D, tonton video animasi santri, taklukkan arena game, dan raih poin XP harianmu!'}
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
                 onClick={() => onNavigate('mufrodat')}
-                className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-extrabold rounded-xl text-xs flex items-center gap-2 shadow-lg shadow-amber-500/20 transition-all cursor-pointer"
+                className="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-extrabold rounded-xl text-xs flex items-center gap-2 shadow-lg shadow-amber-500/20 transition-all cursor-pointer"
               >
                 <BookOpen className="w-4 h-4 text-slate-950" />
-                <span>Mulai Belajar Bab 1</span>
+                <span>Buka Flashcard Mnemonic</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
               <button
-                onClick={() => onNavigate('tutor')}
-                className="px-4 py-2 bg-emerald-900/60 hover:bg-emerald-800/70 text-emerald-200 border border-emerald-500/30 font-bold rounded-xl text-xs flex items-center gap-2 transition-all cursor-pointer"
+                onClick={() => onNavigate('games')}
+                className="px-4 py-2.5 bg-sky-900/60 hover:bg-sky-800/70 text-sky-200 border border-sky-400/30 font-bold rounded-xl text-xs flex items-center gap-2 transition-all cursor-pointer"
               >
-                <BotMessageSquare className="w-4 h-4 text-amber-400" />
-                <span>Tanya Ustadz AI</span>
+                <Gamepad2 className="w-4 h-4 text-amber-400" />
+                <span>Arena Game Seru</span>
               </button>
             </div>
           </div>
 
-          {/* User Status Card */}
-          <div className="bg-slate-950/70 backdrop-blur-md p-5 rounded-2xl border border-emerald-500/20 flex flex-col justify-between shrink-0 min-w-[220px]">
-            <div className="flex items-center gap-3 pb-3 border-b border-slate-800">
-              {userProfile?.photoURL ? (
-                <img
-                  src={userProfile.photoURL}
-                  alt={userProfile.displayName || 'User'}
-                  className="w-12 h-12 rounded-xl object-cover ring-2 ring-amber-400/40"
-                />
-              ) : (
-                <div className="w-12 h-12 rounded-xl bg-emerald-800 text-amber-300 flex items-center justify-center font-bold text-lg ring-2 ring-emerald-500/30">
-                  {userProfile?.displayName?.[0] || 'A'}
-                </div>
-              )}
+          {/* User Level Card */}
+          <div className="bg-slate-950/70 border border-sky-700/50 rounded-2xl p-4 sm:p-5 min-w-[260px] backdrop-blur-md space-y-3">
+            <div className="flex items-center gap-3 pb-3 border-b border-sky-900/50">
+              <div className="w-10 h-10 rounded-full bg-sky-900 text-sky-100 flex items-center justify-center font-bold text-sm ring-2 ring-amber-400/40">
+                {userProfile?.displayName?.[0] || 'S'}
+              </div>
               <div>
                 <p className="font-bold text-xs text-white line-clamp-1">{userProfile?.displayName}</p>
-                <p className="text-[10px] text-amber-400 font-medium">{userProfile?.schoolName || 'Madrasah Aliyah'}</p>
-                <span className="inline-block mt-0.5 text-[9px] uppercase font-bold px-2 py-0.5 rounded-full bg-emerald-900/80 text-emerald-200">
-                  {userProfile?.role === 'guru' ? 'Guru MA' : 'Siswa Kelas 10'}
-                </span>
+                <p className="text-[10px] text-amber-400 font-medium">{levelTitle}</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 pt-3 text-center">
+            {/* Level XP Progress Bar */}
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between text-[10px] text-slate-300">
+                <span>Poin XP</span>
+                <span className="font-bold text-amber-300">{currentXP} / {nextLevelXP} XP</span>
+              </div>
+              <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-amber-500 to-amber-300 rounded-full transition-all duration-500"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 pt-1 text-center">
               <div>
-                <div className="flex items-center justify-center gap-1 text-amber-400 font-bold text-lg">
+                <div className="flex items-center justify-center gap-1 text-amber-400 font-bold text-base">
                   <Flame className="w-4 h-4 fill-amber-400 text-amber-400" />
                   <span>{userProfile?.streak || 1} Hari</span>
                 </div>
@@ -218,18 +270,18 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
               </div>
 
               <div>
-                <div className="flex items-center justify-center gap-1 text-amber-300 font-bold text-lg">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                  <span>{userProfile?.xp || 0} XP</span>
+                <div className="flex items-center justify-center gap-1 text-sky-400 font-bold text-base">
+                  <Trophy className="w-4 h-4 text-sky-400" />
+                  <span>{progressList.filter((p) => p.completed).length} Bab</span>
                 </div>
-                <p className="text-[10px] text-slate-400">Total Poin</p>
+                <p className="text-[10px] text-slate-400">Materi Tuntas</p>
               </div>
             </div>
           </div>
         </div>
 
         {isGuru && (
-          <div className="mt-6 pt-4 border-t border-emerald-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div className="mt-6 pt-4 border-t border-sky-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
             <span className="text-amber-300 flex items-center gap-2 font-semibold">
               <BookOpenCheck className="w-4 h-4" />
               <span>Mode Guru Aktif: Silabus KMA 183 & Generator Bank Soal Ujian Kelas 10 MA</span>
@@ -245,65 +297,83 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
         )}
       </div>
 
-      {/* Interactive Spotlight: Game Seru & Video Animasi (New Features) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Card 1: Game Edukasi Interaktif */}
+      {/* Daily Mystery Gift & Interactive Quest Banner */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Mystery Gift Card */}
         <div
-          onClick={() => onNavigate('games')}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#082820] to-[#041a15] p-6 text-white border-2 border-amber-400/40 shadow-xl hover:border-amber-400 hover:scale-[1.01] transition-all cursor-pointer group"
+          onClick={handleClaimMystery}
+          className={`p-5 rounded-3xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
+            mysteryClaimed
+              ? 'bg-amber-50/80 border-amber-300 text-amber-950'
+              : 'bg-gradient-to-br from-amber-500 to-amber-600 border-amber-300 text-slate-950 shadow-lg shadow-amber-500/20 hover:scale-[1.02]'
+          }`}
         >
-          <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
-          <div className="relative z-10 flex items-start justify-between">
-            <div className="p-3 rounded-2xl bg-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/30 group-hover:rotate-6 transition-transform">
-              <Gamepad2 className="w-6 h-6" />
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-extrabold uppercase tracking-wider">
+                {mysteryClaimed ? 'Klaim Berhasil' : 'Kotak Misteri Harian'}
+              </span>
+              <Gift className={`w-5 h-5 ${mysteryClaimed ? 'text-amber-700' : 'text-slate-950 animate-bounce'}`} />
             </div>
-            <span className="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40">
-              Bonus XP Santri
-            </span>
+            <h3 className="font-extrabold text-base mt-2">
+              {mysteryClaimed ? 'Hadiah +15 XP Telah Masuk!' : 'Klaim Bonus Hikmah & XP'}
+            </h3>
+            <p className="text-xs mt-1 leading-relaxed">
+              {mysteryClaimed
+                ? 'Kembali besok untuk membuka kotak misteri kosakata baru berikutnya!'
+                : 'Ketuk untuk membuka kata mutiara harian dan dapatkan bonus 15 XP instan!'}
+            </p>
           </div>
 
-          <div className="relative z-10 mt-4">
-            <h3 className="text-xl font-extrabold text-white group-hover:text-amber-300 transition-colors">
-              Game Interaktif Bahasa Arab
-            </h3>
-            <p className="text-xs text-emerald-200/80 mt-1 leading-relaxed">
-              Mainkan 3 arena seru: Tebak Cepat Mufrodat (timer 30 dtk), Susun Kalimat (Tarkib), dan Sortir Aqsamul Kalam (Isim, Fi'il, Huruf).
-            </p>
-
-            <div className="mt-4 pt-3 border-t border-emerald-900/60 flex items-center justify-between text-xs font-bold text-amber-300">
-              <span>Mulai Bermain & Kumpulkan XP</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </div>
+          <div className="mt-4 pt-2 border-t border-black/10 flex items-center justify-between text-xs font-bold">
+            <span>{mysteryClaimed ? 'Sudah Diklaim Hari Ini' : 'Buka Sekarang'}</span>
+            {mysteryClaimed ? <Check className="w-4 h-4 text-sky-700" /> : <ArrowRight className="w-4 h-4" />}
           </div>
         </div>
 
-        {/* Card 2: Video Animasi Pembelajaran */}
+        {/* Quest 1: Video Animasi */}
         <div
           onClick={() => onNavigate('videos')}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#062624] to-[#031c19] p-6 text-white border-2 border-emerald-400/40 shadow-xl hover:border-emerald-400 hover:scale-[1.01] transition-all cursor-pointer group"
+          className="p-5 rounded-3xl bg-white border border-slate-200 hover:border-sky-500 shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
         >
-          <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
-          <div className="relative z-10 flex items-start justify-between">
-            <div className="p-3 rounded-2xl bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/30 group-hover:rotate-6 transition-transform">
-              <Film className="w-6 h-6" />
+          <div>
+            <div className="flex items-center justify-between text-xs text-slate-400">
+              <span className="font-bold text-sky-700">Misi Video Animasi</span>
+              <span className="font-bold text-amber-600">+20 XP</span>
             </div>
-            <span className="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-emerald-400/20 text-emerald-200 border border-emerald-400/40">
-              6 Bab KMA 183
-            </span>
-          </div>
-
-          <div className="relative z-10 mt-4">
-            <h3 className="text-xl font-extrabold text-white group-hover:text-emerald-300 transition-colors">
-              Video Animasi Pembelajaran
+            <h3 className="font-bold text-sm text-slate-900 mt-2 group-hover:text-sky-800 transition-colors">
+              Nonton Animasi Bab 1-6
             </h3>
-            <p className="text-xs text-emerald-200/80 mt-1 leading-relaxed">
-              Tonton kartun animasi santri Aliyah dengan transkrip interaktif, audio pengucapan fasih, serta kuis pemahaman tiap bab.
+            <p className="text-xs text-slate-500 mt-1">
+              Tonton dialog visual kartun santri dan jawab kuis pemahaman tiap bab.
             </p>
+          </div>
+          <div className="mt-4 pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-800">
+            <span>Tonton Video</span>
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </div>
 
-            <div className="mt-4 pt-3 border-t border-emerald-900/60 flex items-center justify-between text-xs font-bold text-emerald-300">
-              <span>Putar Video Animasi Santri</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        {/* Quest 2: Simulasi Chat Hiwar */}
+        <div
+          onClick={() => onNavigate('hiwar')}
+          className="p-5 rounded-3xl bg-white border border-slate-200 hover:border-sky-500 shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex items-center justify-between text-xs text-slate-400">
+              <span className="font-bold text-sky-700">Misi Simulasi Chat</span>
+              <span className="font-bold text-amber-600">+25 XP</span>
             </div>
+            <h3 className="font-bold text-sm text-slate-900 mt-2 group-hover:text-sky-800 transition-colors">
+              Simulasi Chat WhatsApp Santri
+            </h3>
+            <p className="text-xs text-slate-500 mt-1">
+              Latihan roleplay percakapan dan pilih balasan yang sopan saat ta'aruf.
+            </p>
+          </div>
+          <div className="mt-4 pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-800">
+            <span>Mulai Roleplay</span>
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
       </div>
@@ -312,8 +382,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
       <div className="bg-gradient-to-r from-amber-50 via-white to-amber-50/60 border border-amber-300/60 rounded-3xl p-6 shadow-sm">
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full bg-amber-200/90 text-amber-950 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-              <Sparkles className="w-3 h-3 text-amber-800" />
+            <span className="text-xs font-bold text-amber-950 uppercase tracking-wider flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
               <span>Hikmah & Mahfudzot Hari Ini</span>
             </span>
             <span className="text-xs text-amber-900/70 hidden sm:inline">• {currentQuote.source}</span>
@@ -347,7 +417,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
         </div>
 
         <div className="mt-3 pt-2 border-t border-amber-200/60 space-y-1">
-          <p className="text-xs font-semibold text-amber-900 italic">
+          <p className="text-xs font-semibold text-amber-900 italic font-mono">
             "{currentQuote.transliteration}"
           </p>
           <p className="text-xs sm:text-sm text-slate-800 font-medium">
@@ -356,51 +426,49 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Target Belajar Santri (Daily Goals) & Quick Actions */}
+      {/* Target Belajar Santri (Daily Goals) & Leaderboard */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         
         {/* Left: Target Belajar Harian */}
         <div className="lg:col-span-2 bg-white rounded-3xl p-6 border border-slate-200 shadow-xs space-y-4">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div className="flex items-center gap-2">
-              <Target className="w-5 h-5 text-emerald-700" />
+              <Target className="w-5 h-5 text-sky-600" />
               <h3 className="font-bold text-base text-slate-900">
                 Target Capaian Belajar Harian Santri
               </h3>
             </div>
-            <span className="text-xs text-emerald-800 font-bold bg-emerald-50 px-2.5 py-1 rounded-full">
-              Kelas 10 MA
-            </span>
+            <span className="text-xs text-slate-400">Target Hari Ini</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {/* Goal 1: Mufrodat */}
-            <div className="p-4 rounded-2xl bg-emerald-50/50 border border-emerald-100 flex flex-col justify-between">
+            <div className="p-4 rounded-2xl bg-sky-50/60 border border-sky-100 flex flex-col justify-between">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-sky-800">
                   Target 1
                 </span>
                 <p className="font-bold text-sm text-slate-900 mt-1">Hafalan Mufrodat</p>
-                <p className="text-xs text-slate-600 mt-0.5">5 kata tematik baru</p>
+                <p className="text-xs text-slate-600 mt-0.5">5 kata dengan mnemonic</p>
               </div>
-              <div className="mt-4 pt-2 border-t border-emerald-100 flex items-center justify-between text-xs">
-                <span className="font-bold text-emerald-800">{savedWords.length}/5 Kata</span>
-                <span className="text-[11px] text-emerald-600 font-semibold">{Math.min(100, Math.round((savedWords.length / 5) * 100))}%</span>
+              <div className="mt-4 pt-2 border-t border-sky-100 flex items-center justify-between text-xs">
+                <span className="font-bold text-sky-800">{savedWords.length}/5 Kata</span>
+                <span className="text-[11px] text-sky-600 font-semibold">{savedWords.length >= 5 ? 'Tercapai' : `${Math.round((savedWords.length / 5) * 100)}%`}</span>
               </div>
             </div>
 
-            {/* Goal 2: Qawa'id */}
-            <div className="p-4 rounded-2xl bg-teal-50/50 border border-teal-100 flex flex-col justify-between">
+            {/* Goal 2: Nahwu Lab */}
+            <div className="p-4 rounded-2xl bg-sky-50/40 border border-sky-100 flex flex-col justify-between">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-teal-800">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-sky-800">
                   Target 2
                 </span>
-                <p className="font-bold text-sm text-slate-900 mt-1">Pemahaman Nahwu</p>
-                <p className="text-xs text-slate-600 mt-0.5">1 modul kaidah pokok</p>
+                <p className="font-bold text-sm text-slate-900 mt-1">Eksperimen Nahwu</p>
+                <p className="text-xs text-slate-600 mt-0.5">1 simulasi rumus visual</p>
               </div>
-              <div className="mt-4 pt-2 border-t border-teal-100 flex items-center justify-between text-xs">
-                <span className="font-bold text-teal-800">{completedLessonsCount}/1 Modul</span>
-                <span className="text-[11px] text-teal-600 font-semibold">{completedLessonsCount > 0 ? 'Tuntas' : '0%'}</span>
+              <div className="mt-4 pt-2 border-t border-sky-100 flex items-center justify-between text-xs">
+                <span className="font-bold text-sky-800">Lab Nahwu</span>
+                <span className="text-[11px] text-sky-600 font-semibold">Siap Diuji</span>
               </div>
             </div>
 
@@ -418,18 +486,6 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
                 <span className="text-[11px] text-amber-600 font-semibold">{quizResults.length > 0 ? 'Tuntas' : '0%'}</span>
               </div>
             </div>
-          </div>
-
-          <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 flex items-center justify-between text-xs">
-            <span className="text-slate-600 font-medium">
-              Selesaikan target harian untuk meraih bonus <strong>+50 XP</strong> dan pertahankan <strong>Streak Belajar</strong>.
-            </span>
-            <button
-              onClick={() => onNavigate('mufrodat')}
-              className="text-emerald-800 font-bold hover:underline shrink-0 ml-2 cursor-pointer"
-            >
-              Lanjutkan
-            </button>
           </div>
         </div>
 
@@ -468,7 +524,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
                 </div>
 
                 <div className="text-right">
-                  <span className="font-extrabold text-emerald-800">{s.xp} XP</span>
+                  <span className="font-extrabold text-sky-800">{s.xp} XP</span>
                   <p className="text-[9px] text-amber-700 font-semibold">{s.badge}</p>
                 </div>
               </div>
@@ -476,7 +532,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
           </div>
 
           <p className="text-[11px] text-slate-500 text-center pt-1">
-            Poin Anda saat ini: <strong className="text-emerald-800">{userProfile?.xp || 0} XP</strong>
+            Poin Anda saat ini: <strong className="text-sky-800">{currentXP} XP</strong>
           </p>
         </div>
       </div>
@@ -486,14 +542,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-1">
           <div>
             <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-emerald-700" />
+              <Calendar className="w-5 h-5 text-sky-600" />
               <span>Daftar Bab Kurikulum Bahasa Arab Kelas X MA</span>
             </h2>
             <p className="text-xs text-slate-500">Materi resmi Kemenag KMA 183 Semester Ganjil & Genap</p>
           </div>
           <button
             onClick={() => onNavigate('mufrodat')}
-            className="text-xs font-bold text-emerald-800 hover:underline flex items-center gap-1 cursor-pointer self-start sm:self-auto"
+            className="text-xs font-bold text-sky-700 hover:underline flex items-center gap-1 cursor-pointer self-start sm:self-auto"
           >
             <span>Buka Seluruh Materi</span>
             <ChevronRight className="w-4 h-4" />
@@ -505,91 +561,42 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
             <div
               key={c.num}
               onClick={() => onNavigate('mufrodat')}
-              className="bg-white p-5 rounded-3xl border border-slate-200 hover:border-emerald-500 hover:shadow-lg transition-all cursor-pointer flex flex-col justify-between group"
+              className="bg-white p-5 rounded-3xl border border-slate-200 hover:border-sky-500 hover:shadow-lg transition-all cursor-pointer flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between text-xs mb-2">
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-bold text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-md border border-amber-200/60 text-[11px]">
-                      Bab {c.num}
-                    </span>
-                    <span className="text-[10px] text-slate-500">{c.level}</span>
-                  </div>
-                  <span className="font-arabic font-bold text-emerald-900 text-base">
+                  <span className="font-bold text-amber-800 text-[11px]">
+                    Bab {c.num} · {c.level}
+                  </span>
+                  <span className="font-arabic text-sky-800 text-base font-bold">
                     {c.arab}
                   </span>
                 </div>
 
-                <h3 className="font-bold text-sm text-slate-900 group-hover:text-emerald-800 transition-colors mt-1">
+                <h3 className="font-bold text-sm text-slate-900 group-hover:text-sky-700 transition-colors">
                   {c.judul}
                 </h3>
-                <p className="text-xs text-slate-500 mt-1">
-                  {c.totalItems} • Harakat Lengkap & Audio
+
+                <p className="text-[11px] text-slate-500 mt-2 font-medium">
+                  Fokus Kaidah: <span className="text-slate-700">{c.fokus}</span>
                 </p>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-[11px] text-slate-600 line-clamp-1">
-                  <strong>Tarkib: </strong>{c.fokus}
+              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                <span className="text-slate-400 font-medium">{c.totalItems}</span>
+                <span className="font-bold text-sky-700 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                  <span>Mulai Bab</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </span>
-                <ArrowRight className="w-4 h-4 text-emerald-700 group-hover:translate-x-1 transition-transform shrink-0 ml-2" />
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Quick Access Tools Grid */}
-      <div>
-        <h3 className="text-base font-bold text-slate-900 mb-3 px-1">
-          Menu Pembelajaran Cepat
-        </h3>
-
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
-          <button
-            onClick={() => onNavigate('mufrodat')}
-            className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-500 text-left transition-all cursor-pointer shadow-xs group"
-          >
-            <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 w-fit mb-3 group-hover:bg-emerald-800 group-hover:text-white transition-colors">
-              <BookOpen className="w-5 h-5" />
-            </div>
-            <p className="font-bold text-xs sm:text-sm text-slate-900">Mufrodat</p>
-            <p className="text-[11px] text-slate-500 mt-0.5">Kosakata & Audio</p>
-          </button>
-
-          <button
-            onClick={() => onNavigate('qawaid')}
-            className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-teal-500 text-left transition-all cursor-pointer shadow-xs group"
-          >
-            <div className="p-2.5 rounded-xl bg-teal-50 text-teal-800 w-fit mb-3 group-hover:bg-teal-800 group-hover:text-white transition-colors">
-              <Compass className="w-5 h-5" />
-            </div>
-            <p className="font-bold text-xs sm:text-sm text-slate-900">Qawa'id</p>
-            <p className="text-[11px] text-slate-500 mt-0.5">Nahwu & Shorof</p>
-          </button>
-
-          <button
-            onClick={() => onNavigate('irab')}
-            className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-purple-500 text-left transition-all cursor-pointer shadow-xs group"
-          >
-            <div className="p-2.5 rounded-xl bg-purple-50 text-purple-800 w-fit mb-3 group-hover:bg-purple-800 group-hover:text-white transition-colors">
-              <Sparkles className="w-5 h-5" />
-            </div>
-            <p className="font-bold text-xs sm:text-sm text-slate-900">Bedah I'rab</p>
-            <p className="text-[11px] text-slate-500 mt-0.5">Analisis Kalimat AI</p>
-          </button>
-
-          <button
-            onClick={() => onNavigate('quiz')}
-            className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-amber-500 text-left transition-all cursor-pointer shadow-xs group"
-          >
-            <div className="p-2.5 rounded-xl bg-amber-50 text-amber-800 w-fit mb-3 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-              <Award className="w-5 h-5" />
-            </div>
-            <p className="font-bold text-xs sm:text-sm text-slate-900">Ujian & Kuis</p>
-            <p className="text-[11px] text-slate-500 mt-0.5">PH, PTS & Kuis AI</p>
-          </button>
-        </div>
+      {/* Copyright Attribution */}
+      <div className="text-center text-xs text-slate-400 pt-2">
+        Al-Bayan • Media Belajar Bahasa Arab Kelas 10 Madrasah Aliyah • Hak Cipta © 2026 DikoSaputra
       </div>
     </div>
   );

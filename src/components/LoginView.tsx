@@ -37,17 +37,17 @@ export const LoginView: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#071d18] text-slate-100 flex flex-col justify-between relative overflow-hidden selection:bg-amber-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#07172b] text-slate-100 flex flex-col justify-between relative overflow-hidden selection:bg-amber-500 selection:text-slate-950">
       {/* Refined Islamic Geometric Ambient Backdrop */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(16,185,129,0.18),transparent)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(56,189,248,0.22),transparent)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_90%,rgba(217,119,6,0.12),transparent_60%)] pointer-events-none" />
       
       {/* Decorative Golden Star Accents */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-emerald-600/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-amber-600/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Header Bar */}
-      <header className="relative z-10 border-b border-emerald-900/40 backdrop-blur-md px-6 py-4">
+      <header className="relative z-10 border-b border-sky-900/40 backdrop-blur-md px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-700 flex items-center justify-center text-slate-950 font-bold shadow-lg shadow-amber-500/20">
@@ -62,7 +62,7 @@ export const LoginView: React.FC = () => {
                   Kelas 10 MA
                 </span>
               </div>
-              <p className="text-[11px] text-emerald-300/80 font-medium tracking-wide">
+              <p className="text-[11px] text-sky-300/80 font-medium tracking-wide">
                 Madrasah Aliyah • Kurikulum Bahasa Arab KMA 183
               </p>
             </div>
@@ -72,8 +72,8 @@ export const LoginView: React.FC = () => {
             <div className="hidden sm:flex items-center text-xs font-bold text-amber-300 bg-amber-500/15 border border-amber-400/40 px-3 py-1.5 rounded-full shadow-xs">
               <span>© DikoSaputra</span>
             </div>
-            <div className="hidden md:flex items-center gap-2 text-xs text-emerald-200/70 border border-emerald-800/60 px-3 py-1.5 rounded-full bg-emerald-950/40">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="hidden md:flex items-center gap-2 text-xs text-sky-200/80 border border-sky-800/60 px-3 py-1.5 rounded-full bg-sky-950/40">
+              <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
               <span>Tahun Ajaran 2026/2027</span>
             </div>
           </div>
@@ -85,7 +85,7 @@ export const LoginView: React.FC = () => {
         
         {/* Calligraphic Top Banner */}
         <div className="text-center max-w-3xl mx-auto mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-900/60 border border-amber-500/30 text-amber-300 text-xs font-semibold mb-4 backdrop-blur-md shadow-xs">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-950/70 border border-sky-400/30 text-sky-200 text-xs font-semibold mb-4 backdrop-blur-md shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
             <span>Portal Edukasi Bahasa Arab Terpadu Madrasah Aliyah</span>
           </div>
@@ -102,21 +102,21 @@ export const LoginView: React.FC = () => {
         </div>
 
         {/* Dual Role Authentication Card */}
-        <div className="w-full max-w-xl bg-slate-900/90 rounded-3xl border border-emerald-700/30 shadow-2xl shadow-black/80 backdrop-blur-xl p-6 sm:p-8">
+        <div className="w-full max-w-xl bg-slate-900/90 rounded-3xl border border-sky-600/30 shadow-2xl shadow-black/80 backdrop-blur-xl p-6 sm:p-8">
           
           {/* Role Selector Tabs (Siswa vs Guru) */}
           <div className="mb-6">
-            <p className="text-xs font-semibold text-emerald-200/90 mb-2.5 text-center uppercase tracking-wider">
+            <p className="text-xs font-semibold text-sky-200/90 mb-2.5 text-center uppercase tracking-wider">
               Pilih Akses Masuk:
             </p>
-            <div className="grid grid-cols-2 gap-3 p-1.5 bg-slate-950/70 rounded-2xl border border-emerald-900/50">
+            <div className="grid grid-cols-2 gap-3 p-1.5 bg-slate-950/70 rounded-2xl border border-sky-900/50">
               {/* Tab Siswa */}
               <button
                 type="button"
                 onClick={() => handleRoleSelect('siswa')}
                 className={`py-3 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all cursor-pointer ${
                   activeTabRole === 'siswa'
-                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-900/50 border border-emerald-400/30'
+                    ? 'bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg shadow-sky-900/50 border border-sky-300/40'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -147,7 +147,7 @@ export const LoginView: React.FC = () => {
           </div>
 
           {/* Quick 1-Click Default Demo Account Login */}
-          <div className="mb-6 bg-gradient-to-br from-amber-500/10 via-emerald-500/10 to-transparent p-4 rounded-2xl border border-amber-500/30">
+          <div className="mb-6 bg-gradient-to-br from-amber-500/10 via-sky-500/15 to-transparent p-4 rounded-2xl border border-amber-500/30">
             <div className="flex items-center justify-between mb-2.5">
               <span className="text-xs font-bold text-amber-300 flex items-center gap-1.5 uppercase tracking-wide">
                 <Zap className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
@@ -166,8 +166,8 @@ export const LoginView: React.FC = () => {
                 disabled={loading}
                 className={`p-3 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
                   activeTabRole === 'siswa'
-                    ? 'bg-emerald-950/80 border-emerald-400/60 shadow-md text-white'
-                    : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-emerald-500/40'
+                    ? 'bg-sky-950/80 border-sky-400/60 shadow-md text-white'
+                    : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-sky-400/40'
                 }`}
               >
                 <div>
@@ -178,7 +178,7 @@ export const LoginView: React.FC = () => {
                   <p className="text-xs font-semibold text-white mt-1">Ahmad Fauzi</p>
                   <p className="text-[10px] text-slate-400 font-mono">siswa.aliyah@albayan.edu</p>
                 </div>
-                <div className="mt-2 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] text-emerald-300 font-bold">
+                <div className="mt-2 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] text-sky-300 font-bold">
                   <span>Masuk sebagai Siswa</span>
                   <ArrowRight className="w-3 h-3" />
                 </div>
@@ -257,7 +257,7 @@ export const LoginView: React.FC = () => {
 
           {/* Privacy & Firestore Note */}
           <div className="mt-5 pt-4 border-t border-slate-800 flex items-center justify-center gap-2 text-[11px] text-slate-400">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
             <span>Data tersimpan per-user di Firebase Firestore aman & privat</span>
           </div>
         </div>
@@ -269,7 +269,7 @@ export const LoginView: React.FC = () => {
               <BookOpen className="w-4 h-4 text-amber-400" />
               <span>Cakupan Silabus Bahasa Arab Kelas 10 Madrasah Aliyah</span>
             </h3>
-            <span className="text-[11px] text-emerald-300/80">Semester Ganjil & Genap</span>
+            <span className="text-[11px] text-sky-300/80">Semester Ganjil & Genap</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
@@ -313,17 +313,17 @@ export const LoginView: React.FC = () => {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-2xl bg-slate-900/60 border border-emerald-900/40 backdrop-blur-xs flex flex-col justify-between hover:border-amber-500/30 transition-colors"
+                className="p-4 rounded-2xl bg-slate-900/60 border border-sky-900/40 backdrop-blur-xs flex flex-col justify-between hover:border-amber-500/30 transition-colors"
               >
                 <div>
                   <div className="flex items-center justify-between text-xs mb-1">
                     <span className="font-bold text-amber-400 text-[11px]">{item.bab}</span>
-                    <span className="font-arabic text-emerald-200 text-sm font-bold">{item.arab}</span>
+                    <span className="font-arabic text-sky-200 text-sm font-bold">{item.arab}</span>
                   </div>
                   <h4 className="font-bold text-sm text-white mt-1">{item.tema}</h4>
                 </div>
                 <div className="mt-3 pt-2 border-t border-slate-800 text-[11px] text-slate-400">
-                  <span className="text-emerald-400 font-semibold">Tarkib: </span>
+                  <span className="text-sky-400 font-semibold">Tarkib: </span>
                   {item.tarkib}
                 </div>
               </div>
@@ -333,7 +333,7 @@ export const LoginView: React.FC = () => {
       </main>
 
       {/* Luxurious Islamic Footer with Copyright DikoSaputra */}
-      <footer className="relative z-10 border-t border-amber-500/20 bg-[#041510]/80 backdrop-blur-md py-6 px-4 text-center text-xs text-slate-400">
+      <footer className="relative z-10 border-t border-amber-500/20 bg-[#04101d]/80 backdrop-blur-md py-6 px-4 text-center text-xs text-slate-400">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-medium text-slate-300">
             Al-Bayan (الْبَيَان) — Media Belajar Bahasa Arab Kelas 10 Madrasah Aliyah (KMA 183)

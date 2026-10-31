@@ -65,6 +65,8 @@ export interface MufrodatItem {
   exampleArabic?: string;
   exampleTrans?: string;
   exampleMeaning?: string;
+  mnemonicTip?: string; // Trik jembatan keledai untuk hafalan cepat santri
+  mood?: 'gaul' | 'dasar' | 'keseharian' | 'akademik';
 }
 
 export interface QawaidItem {
@@ -100,6 +102,15 @@ export interface HiwarDialogue {
   arabic: string;
   transliteration: string;
   meaning: string;
+  roleplayChoice?: {
+    question: string;
+    choices: {
+      text: string;
+      arabic: string;
+      isCorrect: boolean;
+      feedback: string;
+    }[];
+  };
 }
 
 export interface HiwarItem {

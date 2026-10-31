@@ -55,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#09231d]/95 backdrop-blur-md border-b border-amber-500/20 shadow-md shadow-black/20 text-white">
+    <header className="sticky top-0 z-40 bg-[#071a2e]/95 backdrop-blur-md border-b border-amber-500/20 shadow-md shadow-black/20 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
@@ -75,11 +75,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                 <span className="font-arabic text-amber-300 text-lg font-bold">
                   الْبَيَان
                 </span>
-                <span className="hidden sm:inline-block text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-emerald-900/90 text-emerald-200 border border-emerald-500/30">
+                <span className="hidden sm:inline-block text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-sky-950/90 text-sky-200 border border-sky-400/30">
                   Kelas 10 MA
                 </span>
               </div>
-              <p className="text-[10px] sm:text-[11px] text-emerald-300/80 font-medium">
+              <p className="text-[10px] sm:text-[11px] text-sky-300/80 font-medium">
                 Media Belajar Bahasa Arab Madrasah Aliyah
               </p>
             </div>
@@ -95,7 +95,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold border transition-all cursor-pointer ${
                 isGuru
                   ? 'bg-amber-500/20 border-amber-400/40 text-amber-300 hover:bg-amber-500/30'
-                  : 'bg-emerald-800/40 border-emerald-500/30 text-emerald-200 hover:bg-emerald-800/60'
+                  : 'bg-sky-900/40 border-sky-400/30 text-sky-200 hover:bg-sky-900/60'
               }`}
             >
               {isGuru ? (
@@ -105,7 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                 </>
               ) : (
                 <>
-                  <GraduationCap className="w-3.5 h-3.5 text-emerald-300" />
+                  <GraduationCap className="w-3.5 h-3.5 text-sky-300" />
                   <span className="text-[11px]">Siswa MA</span>
                 </>
               )}
@@ -119,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
 
             {/* User Stats Badges (Streak & XP) */}
             {userProfile && (
-              <div className="hidden md:flex items-center gap-2 bg-slate-900/60 px-3 py-1 rounded-full border border-emerald-800/50 text-xs">
+              <div className="hidden md:flex items-center gap-2 bg-slate-900/60 px-3 py-1 rounded-full border border-sky-800/50 text-xs">
                 {/* Streak */}
                 <div className="flex items-center gap-1 text-amber-300 font-semibold" title="Hari beruntun belajar">
                   <Flame className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
@@ -127,7 +127,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                 </div>
                 <div className="w-px h-3 bg-slate-700" />
                 {/* XP */}
-                <div className="flex items-center gap-1 text-emerald-300 font-semibold" title="Total XP">
+                <div className="flex items-center gap-1 text-sky-300 font-semibold" title="Total XP">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                   <span>{userProfile.xp || 0} XP</span>
                 </div>
@@ -142,7 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                 className="w-8 h-8 rounded-full ring-2 ring-amber-400/30 object-cover"
               />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-emerald-800 text-emerald-100 flex items-center justify-center font-bold text-xs ring-1 ring-emerald-500/30">
+              <div className="w-8 h-8 rounded-full bg-sky-900 text-sky-100 flex items-center justify-center font-bold text-xs ring-1 ring-sky-400/30">
                 {currentUser?.displayName?.[0] || 'U'}
               </div>
             )}
@@ -160,7 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
         </div>
 
         {/* Elegant Navigation Bar */}
-        <div className="flex overflow-x-auto no-scrollbar border-t border-emerald-900/50 py-1.5 gap-1.5">
+        <div className="flex overflow-x-auto no-scrollbar border-t border-sky-900/50 py-1.5 gap-1.5">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -174,13 +174,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                   isActive
                     ? isSpecialGuru
                       ? 'bg-gradient-to-r from-amber-600 to-yellow-600 text-slate-950 font-bold shadow-md shadow-amber-900/40'
-                      : 'bg-emerald-700 text-white font-bold shadow-sm shadow-emerald-950/40 border border-emerald-400/30'
+                      : 'bg-sky-600 text-white font-bold shadow-sm shadow-sky-950/40 border border-sky-400/40'
                     : isSpecialGuru
                     ? 'text-amber-300 hover:bg-amber-950/40 border border-amber-500/30'
                     : 'text-slate-300 hover:text-white hover:bg-white/5'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? (isSpecialGuru ? 'text-slate-950' : 'text-amber-300') : 'text-emerald-400/80'}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? (isSpecialGuru ? 'text-slate-950' : 'text-amber-300') : 'text-sky-400/80'}`} />
                 <span>{item.label}</span>
               </button>
             );

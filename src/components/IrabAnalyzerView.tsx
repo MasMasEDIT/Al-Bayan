@@ -207,7 +207,7 @@ export const IrabAnalyzerView: React.FC = () => {
                   </div>
 
                   <div className="mt-2 text-xs space-y-1">
-                    <p className="text-emerald-700 font-semibold">{w.transliteration}</p>
+                    <p className="text-sky-700 font-semibold">{w.transliteration}</p>
                     <p className="text-slate-700 font-medium">Arti: {w.meaning}</p>
                     <div className="mt-2 pt-2 border-t border-slate-200">
                       <p className="text-[11px] text-purple-950 font-medium bg-purple-50 p-2 rounded-xl border border-purple-100">

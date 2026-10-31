@@ -361,9 +361,9 @@ export const GamesView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Royal Header with Copyright DikoSaputra */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#06241c] via-[#093529] to-[#041a15] p-6 sm:p-8 border border-amber-500/30 shadow-2xl shadow-emerald-950/40 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#071a2e] via-[#0c2a4a] to-[#061526] p-6 sm:p-8 border border-amber-500/30 shadow-2xl shadow-sky-950/40 text-white">
         <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/15 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
@@ -374,7 +374,7 @@ export const GamesView: React.FC = () => {
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
               Arena Permainan Edukasi Santri
             </h1>
-            <p className="text-sm text-emerald-200/80 mt-1 max-w-2xl">
+            <p className="text-sm text-sky-200/80 mt-1 max-w-2xl">
               Asah kecepatan kosakata, rakit susunan nahwu-shorof, dan tantang dirimu untuk meraih skor tertinggi serta mengumpulkan bonus XP!
             </p>
           </div>
@@ -383,7 +383,7 @@ export const GamesView: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 self-stretch md:self-auto justify-between md:justify-end">
             <button
               onClick={() => setSoundEnabled(!soundEnabled)}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/80 hover:bg-slate-900 border border-emerald-700/50 text-xs font-bold text-slate-200 transition-colors cursor-pointer"
+              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/80 hover:bg-slate-900 border border-sky-700/50 text-xs font-bold text-slate-200 transition-colors cursor-pointer"
               title="Efek Suara Audio"
             >
               {soundEnabled ? (
@@ -416,7 +416,7 @@ export const GamesView: React.FC = () => {
             className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex items-center gap-3 ${
               activeGame === 'tebak'
                 ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-amber-900/40 border-amber-300'
-                : 'bg-emerald-950/60 border-emerald-800/60 text-slate-200 hover:bg-emerald-900/40'
+                : 'bg-sky-950/60 border-sky-800/60 text-slate-200 hover:bg-sky-900/40'
             }`}
           >
             <div className={`p-2.5 rounded-xl ${activeGame === 'tebak' ? 'bg-slate-950 text-amber-400' : 'bg-amber-500/20 text-amber-300'}`}>
@@ -437,10 +437,10 @@ export const GamesView: React.FC = () => {
             className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex items-center gap-3 ${
               activeGame === 'susun'
                 ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-amber-900/40 border-amber-300'
-                : 'bg-emerald-950/60 border-emerald-800/60 text-slate-200 hover:bg-emerald-900/40'
+                : 'bg-sky-950/60 border-sky-800/60 text-slate-200 hover:bg-sky-900/40'
             }`}
           >
-            <div className={`p-2.5 rounded-xl ${activeGame === 'susun' ? 'bg-slate-950 text-amber-400' : 'bg-emerald-500/20 text-emerald-300'}`}>
+            <div className={`p-2.5 rounded-xl ${activeGame === 'susun' ? 'bg-slate-950 text-amber-400' : 'bg-sky-500/20 text-sky-300'}`}>
               <Shuffle className="w-5 h-5" />
             </div>
             <div>
@@ -458,10 +458,10 @@ export const GamesView: React.FC = () => {
             className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex items-center gap-3 ${
               activeGame === 'sortir'
                 ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold shadow-lg shadow-amber-900/40 border-amber-300'
-                : 'bg-emerald-950/60 border-emerald-800/60 text-slate-200 hover:bg-emerald-900/40'
+                : 'bg-sky-950/60 border-sky-800/60 text-slate-200 hover:bg-sky-900/40'
             }`}
           >
-            <div className={`p-2.5 rounded-xl ${activeGame === 'sortir' ? 'bg-slate-950 text-amber-400' : 'bg-teal-500/20 text-teal-300'}`}>
+            <div className={`p-2.5 rounded-xl ${activeGame === 'sortir' ? 'bg-slate-950 text-amber-400' : 'bg-sky-500/20 text-sky-300'}`}>
               <Layers className="w-5 h-5" />
             </div>
             <div>
@@ -491,7 +491,7 @@ export const GamesView: React.FC = () => {
 
               {/* Highscore */}
               <div className="hidden sm:flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-2xl border border-slate-200 text-xs">
-                <Award className="w-4 h-4 text-emerald-600" />
+                <Award className="w-4 h-4 text-sky-600" />
                 <div>
                   <div className="text-[10px] text-slate-500 font-semibold">Rekor Tertinggi</div>
                   <div className="font-bold text-slate-800">{tebakHighScore} Poin</div>
@@ -511,7 +511,7 @@ export const GamesView: React.FC = () => {
             <div className={`flex items-center gap-2 px-4 py-2 rounded-2xl border font-bold text-sm ${
               tebakTimeLeft <= 10
                 ? 'bg-rose-50 border-rose-300 text-rose-600 animate-pulse'
-                : 'bg-emerald-50 border-emerald-200 text-emerald-800'
+                : 'bg-sky-50 border-sky-200 text-sky-800'
             }`}>
               <Timer className="w-4 h-4" />
               <span>Sisa Waktu: {tebakTimeLeft} Detik</span>
@@ -530,7 +530,7 @@ export const GamesView: React.FC = () => {
               </p>
               <button
                 onClick={startTebakGame}
-                className="mt-6 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-800 hover:to-teal-800 text-white font-extrabold text-sm shadow-xl shadow-emerald-900/30 transition-all cursor-pointer transform hover:scale-105 active:scale-95"
+                className="mt-6 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-700 hover:to-blue-800 text-white font-extrabold text-sm shadow-xl shadow-sky-900/30 transition-all cursor-pointer transform hover:scale-105 active:scale-95"
               >
                 Mulai Tantangan Sekarang 🚀
               </button>
@@ -558,12 +558,12 @@ export const GamesView: React.FC = () => {
                 <div className="w-px h-8 bg-slate-700" />
                 <div>
                   <div className="text-xs text-slate-400">Hadiah Belajar</div>
-                  <div className="text-2xl font-extrabold text-emerald-400">+{Math.max(10, Math.floor(tebakScore / 5))} XP</div>
+                  <div className="text-2xl font-extrabold text-sky-400">+{Math.max(10, Math.floor(tebakScore / 5))} XP</div>
                 </div>
               </div>
               <button
                 onClick={startTebakGame}
-                className="w-full py-3.5 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm shadow-md transition-colors cursor-pointer flex items-center justify-center gap-2"
+                className="w-full py-3.5 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md transition-colors cursor-pointer flex items-center justify-center gap-2"
               >
                 <RotateCcw className="w-4 h-4" />
                 <span>Mainkan Lagi</span>
@@ -575,7 +575,7 @@ export const GamesView: React.FC = () => {
           {tebakIsRunning && tebakCurrentQ && (
             <div className="py-6 max-w-2xl mx-auto space-y-6">
               {/* Question Card */}
-              <div className="p-8 rounded-3xl bg-gradient-to-br from-[#07251e] to-[#041a15] text-white text-center border-2 border-amber-400/40 shadow-xl relative">
+              <div className="p-8 rounded-3xl bg-gradient-to-br from-[#071a2e] to-[#061526] text-white text-center border-2 border-amber-400/40 shadow-xl relative">
                 <button
                   onClick={() => handlePronounce(tebakCurrentQ.arabic)}
                   className="absolute top-4 right-4 p-2 rounded-xl bg-white/10 hover:bg-white/20 text-amber-300 transition-colors cursor-pointer"
@@ -584,7 +584,7 @@ export const GamesView: React.FC = () => {
                   <Volume2 className="w-5 h-5" />
                 </button>
 
-                <p className="text-xs font-semibold uppercase tracking-widest text-emerald-300">
+                <p className="text-xs font-semibold uppercase tracking-widest text-sky-300">
                   Pilih Arti yang Tepat:
                 </p>
                 <h3 className="font-arabic text-4xl sm:text-5xl font-bold my-4 text-amber-300 leading-relaxed">
@@ -615,12 +615,12 @@ export const GamesView: React.FC = () => {
               {tebakFeedback && (
                 <div className={`p-3 rounded-xl text-center text-xs font-bold flex items-center justify-center gap-2 ${
                   tebakFeedback === 'correct'
-                    ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                    ? 'bg-sky-100 text-sky-900 border border-sky-300'
                     : 'bg-rose-100 text-rose-800 border border-rose-300'
                 }`}>
                   {tebakFeedback === 'correct' ? (
                     <>
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      <CheckCircle2 className="w-4 h-4 text-sky-600" />
                       <span>Mumtaz! Jawaban Benar (+100 Poin)</span>
                     </>
                   ) : (
@@ -653,7 +653,7 @@ export const GamesView: React.FC = () => {
             </div>
             <div className="flex items-center gap-3">
               <span className="text-xs text-slate-500">Soal {scrambleIndex + 1} dari {SCRAMBLE_QUESTIONS.length}</span>
-              <div className="bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-full text-xs">
+              <div className="bg-sky-100 text-sky-900 font-bold px-3 py-1 rounded-full text-xs">
                 Skor: {scrambleScore}
               </div>
             </div>
@@ -668,7 +668,7 @@ export const GamesView: React.FC = () => {
           </div>
 
           {/* Sentence Drop Zone (Selected Word Chips) */}
-          <div className="p-6 rounded-3xl bg-slate-900 text-white min-h-[120px] flex flex-col justify-center items-center border-2 border-dashed border-emerald-500/40 relative">
+          <div className="p-6 rounded-3xl bg-slate-900 text-white min-h-[120px] flex flex-col justify-center items-center border-2 border-dashed border-sky-500/40 relative">
             {selectedTokens.length === 0 ? (
               <p className="text-xs sm:text-sm text-slate-400 italic">
                 Klik kartu kata di bawah untuk merangkai kalimat sempurna dari kanan ke kiri
@@ -699,7 +699,7 @@ export const GamesView: React.FC = () => {
                 <button
                   key={idx}
                   onClick={() => handleSelectToken(token, idx)}
-                  className="px-4 py-2 rounded-xl bg-white hover:bg-emerald-50 border-2 border-emerald-600/30 text-emerald-950 font-arabic text-xl font-bold shadow-xs hover:border-emerald-600 transition-all cursor-pointer"
+                  className="px-4 py-2 rounded-xl bg-white hover:bg-sky-50 border-2 border-sky-600/30 text-sky-950 font-arabic text-xl font-bold shadow-xs hover:border-sky-600 transition-all cursor-pointer"
                 >
                   {token}
                 </button>
@@ -728,7 +728,7 @@ export const GamesView: React.FC = () => {
               <button
                 onClick={checkScrambleSentence}
                 disabled={selectedTokens.length === 0}
-                className="px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white font-bold text-xs sm:text-sm shadow-md transition-colors cursor-pointer flex items-center gap-2"
+                className="px-6 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 disabled:opacity-50 text-white font-bold text-xs sm:text-sm shadow-md transition-colors cursor-pointer flex items-center gap-2"
               >
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Periksa Kalimat</span>
@@ -748,18 +748,18 @@ export const GamesView: React.FC = () => {
 
           {/* Grammar Explanation Result */}
           {scrambleStatus === 'correct' && (
-            <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-950 space-y-2">
-              <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+            <div className="p-4 rounded-2xl bg-sky-50 border border-sky-300 text-sky-950 space-y-2">
+              <div className="flex items-center gap-2 text-sky-800 font-bold text-sm">
+                <CheckCircle2 className="w-5 h-5 text-sky-600" />
                 <span>Sahih! Kalimatmu tersusun rapi sesuai kaidah nahwu (+25 XP)</span>
               </div>
-              <p className="text-xs text-emerald-900 leading-relaxed">
+              <p className="text-xs text-sky-900 leading-relaxed">
                 <span className="font-bold">Bedah Kaidah: </span>
                 {currentScramble.grammarNote}
               </p>
               <button
                 onClick={() => handlePronounce(currentScramble.correctTokens.join(' '))}
-                className="inline-flex items-center gap-1.5 text-xs text-emerald-800 font-bold bg-white px-3 py-1 rounded-lg border border-emerald-200 mt-1 cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs text-sky-800 font-bold bg-white px-3 py-1 rounded-lg border border-sky-200 mt-1 cursor-pointer"
               >
                 <Volume2 className="w-3.5 h-3.5" />
                 <span>Dengarkan Pengucapan Lengkap</span>
@@ -786,7 +786,7 @@ export const GamesView: React.FC = () => {
           {/* Header */}
           <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
             <div>
-              <span className="text-xs font-bold text-teal-800 bg-teal-100 px-3 py-1 rounded-full">
+              <span className="text-xs font-bold text-sky-800 bg-sky-100 px-3 py-1 rounded-full">
                 Bab 1 Kelas 10 MA: أَقْسَامُ الْكَلَامِ
               </span>
               <h2 className="text-xl font-extrabold text-slate-900 mt-1">
@@ -795,7 +795,7 @@ export const GamesView: React.FC = () => {
             </div>
             <div className="flex items-center gap-3">
               <span className="text-xs text-slate-500">Kata {sortIndex + 1} / {SORTING_WORDS.length}</span>
-              <div className="bg-teal-100 text-teal-900 font-bold px-3 py-1 rounded-full text-xs">
+              <div className="bg-sky-100 text-sky-900 font-bold px-3 py-1 rounded-full text-xs">
                 Skor: {sortScore}
               </div>
             </div>
@@ -805,7 +805,7 @@ export const GamesView: React.FC = () => {
           {!sortGameOver ? (
             <div className="max-w-xl mx-auto space-y-8 py-4">
               {/* Target Word Card */}
-              <div className="p-8 rounded-3xl bg-gradient-to-br from-[#051e18] via-[#093529] to-[#041a15] text-white text-center border-2 border-teal-500/40 shadow-2xl relative">
+              <div className="p-8 rounded-3xl bg-gradient-to-br from-[#071a2e] via-[#0c2a4a] to-[#061526] text-white text-center border-2 border-sky-400/40 shadow-2xl relative">
                 <button
                   onClick={() => handlePronounce(currentSortWord.word)}
                   className="absolute top-4 right-4 p-2 rounded-xl bg-white/10 hover:bg-white/20 text-amber-300 transition-colors cursor-pointer"
@@ -814,7 +814,7 @@ export const GamesView: React.FC = () => {
                   <Volume2 className="w-5 h-5" />
                 </button>
 
-                <p className="text-xs font-semibold uppercase tracking-widest text-emerald-300">
+                <p className="text-xs font-semibold uppercase tracking-widest text-sky-300">
                   Klasifikasikan Jenis Kata Ini:
                 </p>
                 <h3 className="font-arabic text-5xl font-bold my-4 text-amber-300 drop-shadow-sm">
@@ -840,11 +840,11 @@ export const GamesView: React.FC = () => {
                 {/* FI'IL */}
                 <button
                   onClick={() => handleSortChoice('Fi\'il')}
-                  className="p-5 rounded-2xl bg-emerald-50 hover:bg-emerald-100/80 border-2 border-emerald-400/50 text-emerald-950 font-bold transition-all cursor-pointer transform hover:-translate-y-1 active:translate-y-0 shadow-sm flex flex-col items-center justify-center text-center"
+                  className="p-5 rounded-2xl bg-sky-50 hover:bg-sky-100/80 border-2 border-sky-400/50 text-sky-950 font-bold transition-all cursor-pointer transform hover:-translate-y-1 active:translate-y-0 shadow-sm flex flex-col items-center justify-center text-center"
                 >
-                  <span className="font-arabic text-2xl font-bold text-emerald-700">فِعْلٌ</span>
+                  <span className="font-arabic text-2xl font-bold text-sky-700">فِعْلٌ</span>
                   <span className="text-sm font-extrabold mt-1">FI'IL</span>
-                  <span className="text-[10px] text-emerald-600 font-normal mt-0.5">Kata Kerja Perbuatan</span>
+                  <span className="text-[10px] text-sky-600 font-normal mt-0.5">Kata Kerja Perbuatan</span>
                 </button>
 
                 {/* HURUF */}
@@ -862,13 +862,13 @@ export const GamesView: React.FC = () => {
               {sortStatus !== 'idle' && (
                 <div className={`p-4 rounded-2xl border text-xs leading-relaxed ${
                   sortStatus === 'correct'
-                    ? 'bg-emerald-50 border-emerald-300 text-emerald-950'
+                    ? 'bg-sky-50 border-sky-300 text-sky-950'
                     : 'bg-rose-50 border-rose-300 text-rose-950'
                 }`}>
                   <div className="font-bold mb-1 flex items-center gap-1.5">
                     {sortStatus === 'correct' ? (
                       <>
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                        <CheckCircle2 className="w-4 h-4 text-sky-600" />
                         <span>Jawaban Tepat! Kata ini adalah {currentSortWord.type}</span>
                       </>
                     ) : (
@@ -885,17 +885,17 @@ export const GamesView: React.FC = () => {
           ) : (
             /* Game Over Screen */
             <div className="text-center py-10 max-w-md mx-auto">
-              <div className="w-20 h-20 mx-auto rounded-3xl bg-teal-100 text-teal-800 flex items-center justify-center mb-4">
+              <div className="w-20 h-20 mx-auto rounded-3xl bg-sky-100 text-sky-800 flex items-center justify-center mb-4">
                 <Trophy className="w-10 h-10" />
               </div>
               <h3 className="text-2xl font-extrabold text-slate-900">Klasifikasi Selesai!</h3>
               <p className="text-slate-600 text-sm mt-1">
                 Kamu telah menyelesaikan semua kata pembagian kalam Kelas 10 Madrasah Aliyah.
               </p>
-              <div className="my-5 p-4 rounded-2xl bg-slate-900 text-white flex items-center justify-around border border-teal-500/30">
+              <div className="my-5 p-4 rounded-2xl bg-slate-900 text-white flex items-center justify-around border border-sky-500/30">
                 <div>
                   <div className="text-xs text-slate-400">Total Skor</div>
-                  <div className="text-2xl font-extrabold text-teal-300">{sortScore}</div>
+                  <div className="text-2xl font-extrabold text-sky-300">{sortScore}</div>
                 </div>
                 <div className="w-px h-8 bg-slate-700" />
                 <div>
@@ -905,7 +905,7 @@ export const GamesView: React.FC = () => {
               </div>
               <button
                 onClick={restartSortGame}
-                className="w-full py-3.5 rounded-2xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-sm shadow-md transition-colors cursor-pointer flex items-center justify-center gap-2"
+                className="w-full py-3.5 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md transition-colors cursor-pointer flex items-center justify-center gap-2"
               >
                 <RotateCcw className="w-4 h-4" />
                 <span>Mainkan Ulang</span>
@@ -916,7 +916,7 @@ export const GamesView: React.FC = () => {
       )}
 
       {/* Footer Copyright Card */}
-      <div className="rounded-2xl bg-emerald-950/40 border border-emerald-900/60 p-4 text-center text-xs text-emerald-300/80">
+      <div className="rounded-2xl bg-sky-950/40 border border-sky-900/60 p-4 text-center text-xs text-sky-300/80">
         <p className="font-semibold text-white">
           Game Edukasi Bahasa Arab Al-Bayan — Kurikulum KMA 183 Kelas 10 MA
         </p>

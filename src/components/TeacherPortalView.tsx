@@ -68,7 +68,7 @@ export const TeacherPortalView: React.FC = () => {
   return (
     <div className="space-y-8 max-w-6xl mx-auto pb-12">
       {/* Teacher Welcome Hero */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 text-white p-6 sm:p-8 border border-amber-500/30 shadow-xl">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#07172b] via-[#0b2b4d] to-[#07172b] text-white p-6 sm:p-8 border border-amber-500/30 shadow-xl">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-400/30">
@@ -100,7 +100,7 @@ export const TeacherPortalView: React.FC = () => {
       <div>
         <div className="flex items-center justify-between mb-3 px-1">
           <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <ScrollText className="w-4 h-4 text-emerald-700" />
+            <ScrollText className="w-4 h-4 text-sky-700" />
             <span>Alur Tujuan Pembelajaran & Silabus per Bab (KMA 183)</span>
           </h2>
           <span className="text-xs text-slate-500">Kelas X Madrasah Aliyah</span>
@@ -115,12 +115,12 @@ export const TeacherPortalView: React.FC = () => {
                 onClick={() => setSelectedBab(s.bab)}
                 className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
                   isSelected
-                    ? 'bg-emerald-900 text-white border-emerald-900 shadow-md'
-                    : 'bg-white text-slate-800 border-slate-200 hover:border-emerald-300'
+                    ? 'bg-sky-900 text-white border-sky-900 shadow-md'
+                    : 'bg-white text-slate-800 border-slate-200 hover:border-sky-300'
                 }`}
               >
                 <div className="flex items-center justify-between text-xs mb-1">
-                  <span className={`font-bold ${isSelected ? 'text-amber-300' : 'text-emerald-700'}`}>
+                  <span className={`font-bold ${isSelected ? 'text-amber-300' : 'text-sky-700'}`}>
                     Bab {s.bab}
                   </span>
                   <span className="font-arabic font-bold text-sm">{s.temaArab}</span>
@@ -138,7 +138,7 @@ export const TeacherPortalView: React.FC = () => {
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
-            <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-50 px-2.5 py-1 rounded-md">
+            <span className="text-[11px] font-bold text-sky-800 uppercase tracking-wider bg-sky-50 px-2.5 py-1 rounded-md">
               Rencana Perangkat Ajar Bab {activeSilabus.bab}
             </span>
             <h3 className="text-xl font-bold text-slate-900 mt-2">
@@ -159,8 +159,8 @@ export const TeacherPortalView: React.FC = () => {
           >
             {copiedId === `silabus-${activeSilabus.bab}` ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="text-emerald-700">Tersalin!</span>
+                <Check className="w-3.5 h-3.5 text-sky-600" />
+                <span className="text-sky-700">Tersalin!</span>
               </>
             ) : (
               <>
@@ -176,13 +176,13 @@ export const TeacherPortalView: React.FC = () => {
           {/* Capaian Pembelajaran */}
           <div className="bg-slate-50/80 rounded-2xl p-5 border border-slate-200/80 space-y-3">
             <h4 className="font-bold text-xs uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
-              <Layers className="w-4 h-4 text-emerald-600" />
+              <Layers className="w-4 h-4 text-sky-600" />
               <span>Capaian Pembelajaran (CP) & Indikator</span>
             </h4>
             <ul className="space-y-2 text-xs text-slate-700">
               {activeSilabus.capaianPembelajaran.map((cp, idx) => (
                 <li key={idx} className="flex items-start gap-2">
-                  <span className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="w-4 h-4 rounded-full bg-sky-100 text-sky-800 text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
                     {idx + 1}
                   </span>
                   <span className="leading-relaxed">{cp}</span>
@@ -192,19 +192,19 @@ export const TeacherPortalView: React.FC = () => {
           </div>
 
           {/* Materi Pokok & Kaidah Tarkib */}
-          <div className="bg-emerald-50/40 rounded-2xl p-5 border border-emerald-100 space-y-3">
-            <h4 className="font-bold text-xs uppercase tracking-wider text-emerald-900 flex items-center gap-1.5">
-              <Compass className="w-4 h-4 text-emerald-700" />
+          <div className="bg-sky-50/40 rounded-2xl p-5 border border-sky-100 space-y-3">
+            <h4 className="font-bold text-xs uppercase tracking-wider text-sky-900 flex items-center gap-1.5">
+              <Compass className="w-4 h-4 text-sky-700" />
               <span>Fokus Kaidah & Materi Pokok</span>
             </h4>
             <div className="space-y-2 text-xs">
               <div>
                 <p className="font-semibold text-slate-500 text-[11px]">Kaidah Tarkib / Nahwu:</p>
-                <p className="font-bold text-emerald-950 font-arabic text-sm mt-0.5">
+                <p className="font-bold text-sky-950 font-arabic text-sm mt-0.5">
                   {activeSilabus.tarkib}
                 </p>
               </div>
-              <div className="pt-2 border-t border-emerald-100">
+              <div className="pt-2 border-t border-sky-100">
                 <p className="font-semibold text-slate-500 text-[11px]">Materi Kosakata & Teks:</p>
                 <p className="text-slate-800 leading-relaxed mt-0.5">
                   {activeSilabus.materiPokok}
@@ -227,7 +227,7 @@ export const TeacherPortalView: React.FC = () => {
       </div>
 
       {/* AI Exam & Quiz Generator for Teachers */}
-      <div className="bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-950 rounded-3xl p-6 sm:p-8 text-white border border-emerald-500/30 shadow-xl space-y-6">
+      <div className="bg-gradient-to-br from-[#07172b] via-[#0b2b4d] to-[#07172b] rounded-3xl p-6 sm:p-8 text-white border border-sky-500/30 shadow-xl space-y-6">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center shadow-lg">
             <Sparkles className="w-6 h-6" />
@@ -245,11 +245,11 @@ export const TeacherPortalView: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
           {/* Topic Select */}
           <div className="space-y-1.5">
-            <label className="font-bold text-emerald-200">Pilih Materi Soal:</label>
+            <label className="font-bold text-sky-200">Pilih Materi Soal:</label>
             <select
               value={examTopic}
               onChange={(e) => setExamTopic(e.target.value)}
-              className="w-full p-2.5 rounded-xl bg-slate-900 border border-emerald-700/50 text-white focus:outline-none focus:border-amber-400"
+              className="w-full p-2.5 rounded-xl bg-slate-900 border border-sky-700/50 text-white focus:outline-none focus:border-amber-400"
             >
               <option value="Bab 1: التحيات والتعارف (Sapaan, Perkenalan & Isim-Fi'il-Huruf)">Bab 1: Ta'aruf & Pembagian Kata</option>
               <option value="Bab 2: الأسرة والبيت (Keluarga & Dhomir Muttashil)">Bab 2: Usrah & Dhomir</option>
@@ -260,11 +260,11 @@ export const TeacherPortalView: React.FC = () => {
 
           {/* Exam Type */}
           <div className="space-y-1.5">
-            <label className="font-bold text-emerald-200">Jenis Evaluasi:</label>
+            <label className="font-bold text-sky-200">Jenis Evaluasi:</label>
             <select
               value={examType}
               onChange={(e) => setExamType(e.target.value)}
-              className="w-full p-2.5 rounded-xl bg-slate-900 border border-emerald-700/50 text-white focus:outline-none focus:border-amber-400"
+              className="w-full p-2.5 rounded-xl bg-slate-900 border border-sky-700/50 text-white focus:outline-none focus:border-amber-400"
             >
               <option value="Penilaian Harian (PH)">Penilaian Harian (PH)</option>
               <option value="Penilaian Tengah Semester (PTS)">Penilaian Tengah Semester (PTS)</option>
@@ -275,7 +275,7 @@ export const TeacherPortalView: React.FC = () => {
 
           {/* Count */}
           <div className="space-y-1.5">
-            <label className="font-bold text-emerald-200">Jumlah Butir Soal:</label>
+            <label className="font-bold text-sky-200">Jumlah Butir Soal:</label>
             <div className="flex gap-2">
               {[3, 5, 10].map((num) => (
                 <button
@@ -323,13 +323,13 @@ export const TeacherPortalView: React.FC = () => {
 
         {/* Display Generated Questions */}
         {generatedExam && generatedExam.questions && generatedExam.questions.length > 0 && (
-          <div className="bg-slate-950/80 rounded-2xl p-5 border border-emerald-500/40 text-slate-200 space-y-4">
+          <div className="bg-slate-950/80 rounded-2xl p-5 border border-sky-500/40 text-slate-200 space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-800">
               <div>
                 <h4 className="font-bold text-white text-sm">
                   Hasil Bank Soal ({generatedExam.questions.length} Butir)
                 </h4>
-                <p className="text-[11px] text-emerald-300">{examTopic} • {examType}</p>
+                <p className="text-[11px] text-sky-300">{examTopic} • {examType}</p>
               </div>
 
               <button
@@ -343,7 +343,7 @@ export const TeacherPortalView: React.FC = () => {
               >
                 {copiedId === 'all-generated-exam' ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <Check className="w-3.5 h-3.5 text-sky-400" />
                     <span>Tersalin ke Clipboard!</span>
                   </>
                 ) : (
@@ -372,7 +372,7 @@ export const TeacherPortalView: React.FC = () => {
                         key={optIdx}
                         className={`p-2 rounded-lg border text-xs ${
                           optIdx === q.correctIndex
-                            ? 'bg-emerald-950/80 border-emerald-400/80 text-emerald-200 font-bold'
+                            ? 'bg-sky-950/80 border-sky-400/80 text-sky-200 font-bold'
                             : 'bg-slate-950 border-slate-800 text-slate-300'
                         }`}
                       >

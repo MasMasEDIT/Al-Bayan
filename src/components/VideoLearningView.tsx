@@ -68,9 +68,9 @@ export const VideoLearningView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Royal Luxury Header with Copyright DikoSaputra */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#06241c] via-[#093529] to-[#041a15] p-6 sm:p-8 border border-amber-500/30 shadow-2xl shadow-emerald-950/40 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#071a2e] via-[#0c2a4a] to-[#061526] p-6 sm:p-8 border border-amber-500/30 shadow-2xl shadow-sky-950/40 text-white">
         <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-500/15 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
@@ -81,7 +81,7 @@ export const VideoLearningView: React.FC = () => {
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
               Video Animasi Pembelajaran Kelas 10
             </h1>
-            <p className="text-sm text-emerald-200/80 mt-1 max-w-2xl">
+            <p className="text-sm text-sky-200/80 mt-1 max-w-2xl">
               Tonton animasi visual kontekstual santri Aliyah, ikuti transkrip dialog dwibahasa interaktif, dan uji pemahamanmu dengan kuis berhadiah XP!
             </p>
           </div>
@@ -113,7 +113,7 @@ export const VideoLearningView: React.FC = () => {
             {/* Video Details Header */}
             <div className="p-5 sm:p-6 bg-gradient-to-b from-white to-slate-50/50">
               <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full">
+                <span className="text-xs font-bold text-sky-800 bg-sky-100 px-3 py-1 rounded-full">
                   Bab {selectedVideo.bab}: Madrasah Aliyah Kelas 10
                 </span>
                 <span className="flex items-center gap-1.5 text-xs text-slate-500 font-semibold bg-slate-100 px-3 py-1 rounded-full">
@@ -142,11 +142,11 @@ export const VideoLearningView: React.FC = () => {
                 onClick={() => setActiveTab('transcript')}
                 className={`px-4 py-2.5 rounded-t-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                   activeTab === 'transcript'
-                    ? 'bg-white text-emerald-800 border-t-2 border-emerald-600 shadow-xs'
+                    ? 'bg-white text-sky-800 border-t-2 border-sky-600 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                <BookOpen className="w-4 h-4 text-emerald-600" />
+                <BookOpen className="w-4 h-4 text-sky-600" />
                 <span>Transkrip Interaktif</span>
               </button>
 
@@ -154,7 +154,7 @@ export const VideoLearningView: React.FC = () => {
                 onClick={() => setActiveTab('keypoints')}
                 className={`px-4 py-2.5 rounded-t-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                   activeTab === 'keypoints'
-                    ? 'bg-white text-emerald-800 border-t-2 border-emerald-600 shadow-xs'
+                    ? 'bg-white text-sky-800 border-t-2 border-sky-600 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
@@ -166,14 +166,14 @@ export const VideoLearningView: React.FC = () => {
                 onClick={() => setActiveTab('quiz')}
                 className={`px-4 py-2.5 rounded-t-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                   activeTab === 'quiz'
-                    ? 'bg-white text-emerald-800 border-t-2 border-emerald-600 shadow-xs'
+                    ? 'bg-white text-sky-800 border-t-2 border-sky-600 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 <Award className="w-4 h-4 text-purple-600" />
                 <span>Kuis Pemahaman Video</span>
                 {quizPassed && (
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="w-2 h-2 rounded-full bg-sky-500" />
                 )}
               </button>
             </div>
@@ -195,12 +195,12 @@ export const VideoLearningView: React.FC = () => {
                       >
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex items-center gap-2">
-                            <span className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold flex items-center justify-center shrink-0">
+                            <span className="w-6 h-6 rounded-full bg-sky-100 text-sky-800 text-[11px] font-bold flex items-center justify-center shrink-0">
                               {idx + 1}
                             </span>
                             <button
                               onClick={() => handlePronounce(line.arabic)}
-                              className="p-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white transition-colors cursor-pointer"
+                              className="p-1.5 rounded-lg bg-sky-600 hover:bg-sky-700 text-white transition-colors cursor-pointer"
                               title="Dengarkan Pelafalan Arab"
                             >
                               <Volume2 className="w-3.5 h-3.5" />
@@ -210,13 +210,13 @@ export const VideoLearningView: React.FC = () => {
                               disabled={isSaved}
                               className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
                                 isSaved
-                                  ? 'bg-emerald-100 text-emerald-800'
+                                  ? 'bg-sky-100 text-sky-800'
                                   : 'bg-white hover:bg-slate-200 text-slate-600 border border-slate-300'
                               }`}
                               title={isSaved ? 'Tersimpan di Kamus' : 'Simpan ke Kamus Saya'}
                             >
                               {isSaved ? (
-                                <BookmarkCheck className="w-3.5 h-3.5 text-emerald-600" />
+                                <BookmarkCheck className="w-3.5 h-3.5 text-sky-600" />
                               ) : (
                                 <BookmarkPlus className="w-3.5 h-3.5" />
                               )}
@@ -258,7 +258,7 @@ export const VideoLearningView: React.FC = () => {
                       key={idx}
                       className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3"
                     >
-                      <div className="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-5 h-5 rounded-full bg-sky-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
                         {idx + 1}
                       </div>
                       <p className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">
@@ -289,7 +289,7 @@ export const VideoLearningView: React.FC = () => {
                       let btnStyle = 'border-slate-200 hover:border-purple-300 hover:bg-purple-50/40 text-slate-800';
                       if (quizAnswered !== null) {
                         if (isCorrect) {
-                          btnStyle = 'border-emerald-500 bg-emerald-50 text-emerald-900 font-bold';
+                          btnStyle = 'border-sky-500 bg-sky-50 text-sky-900 font-bold';
                         } else if (isChosen) {
                           btnStyle = 'border-rose-400 bg-rose-50 text-rose-900 font-semibold';
                         }
@@ -304,7 +304,7 @@ export const VideoLearningView: React.FC = () => {
                         >
                           <span>{opt}</span>
                           {quizAnswered !== null && isCorrect && (
-                            <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                            <CheckCircle2 className="w-5 h-5 text-sky-600 shrink-0" />
                           )}
                           {quizAnswered !== null && isChosen && !isCorrect && (
                             <XCircle className="w-5 h-5 text-rose-500 shrink-0" />
@@ -317,13 +317,13 @@ export const VideoLearningView: React.FC = () => {
                   {quizAnswered !== null && (
                     <div className={`p-4 rounded-2xl text-xs leading-relaxed ${
                       quizPassed
-                        ? 'bg-emerald-50 border border-emerald-300 text-emerald-950'
+                        ? 'bg-sky-50 border border-sky-300 text-sky-950'
                         : 'bg-rose-50 border border-rose-300 text-rose-950'
                     }`}>
                       <div className="font-bold flex items-center gap-1.5 mb-1">
                         {quizPassed ? (
                           <>
-                            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                            <CheckCircle2 className="w-4 h-4 text-sky-600" />
                             <span>Mumtaz! Jawabanmu benar (+20 XP diraih)</span>
                           </>
                         ) : (
@@ -349,7 +349,7 @@ export const VideoLearningView: React.FC = () => {
               <Film className="w-5 h-5 text-amber-400" />
               <h3 className="font-bold text-sm">Daftar Modul Video</h3>
             </div>
-            <span className="text-xs text-emerald-400 font-semibold">
+            <span className="text-xs text-sky-400 font-semibold">
               6 Bab Lengkap
             </span>
           </div>
@@ -363,8 +363,8 @@ export const VideoLearningView: React.FC = () => {
                   onClick={() => handleSelectVideo(video)}
                   className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer flex flex-col justify-between ${
                     isSelected
-                      ? 'bg-gradient-to-r from-emerald-800 to-[#07251e] text-white border-amber-400/60 shadow-lg shadow-emerald-950/40'
-                      : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-800 hover:border-emerald-500/40 shadow-xs'
+                      ? 'bg-gradient-to-r from-sky-800 to-[#071a2e] text-white border-amber-400/60 shadow-lg shadow-sky-950/40'
+                      : 'bg-white hover:bg-slate-50 border-slate-200 text-slate-800 hover:border-sky-500/40 shadow-xs'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
@@ -374,7 +374,7 @@ export const VideoLearningView: React.FC = () => {
                       Bab {video.bab}
                     </span>
                     <span className={`text-[11px] flex items-center gap-1 font-semibold ${
-                      isSelected ? 'text-emerald-200' : 'text-slate-400'
+                      isSelected ? 'text-sky-200' : 'text-slate-400'
                     }`}>
                       <Clock className="w-3 h-3" />
                       <span>{video.duration}</span>
@@ -385,13 +385,13 @@ export const VideoLearningView: React.FC = () => {
                     {video.title}
                   </h4>
                   <p className={`font-arabic text-xs font-semibold mt-1 ${
-                    isSelected ? 'text-amber-300' : 'text-emerald-800'
+                    isSelected ? 'text-amber-300' : 'text-sky-800'
                   }`}>
                     {video.arabicTitle}
                   </p>
 
                   <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[11px]">
-                    <span className={isSelected ? 'text-emerald-300' : 'text-slate-500'}>
+                    <span className={isSelected ? 'text-sky-300' : 'text-slate-500'}>
                       {video.transcript.length} Bait Dialog
                     </span>
                     <div className="flex items-center gap-1 font-bold">
@@ -405,12 +405,12 @@ export const VideoLearningView: React.FC = () => {
           </div>
 
           {/* DikoSaputra Signature Card */}
-          <div className="p-4 rounded-2xl bg-gradient-to-br from-[#06241c] to-[#041a15] border border-amber-500/30 text-white text-center">
+          <div className="p-4 rounded-2xl bg-gradient-to-br from-[#071a2e] to-[#061526] border border-amber-500/30 text-white text-center">
             <span className="font-arabic text-amber-300 text-lg font-bold">الْبَيَان</span>
             <p className="text-xs font-bold text-white mt-1">
               Hak Cipta Terdaftar: DikoSaputra
             </p>
-            <p className="text-[10px] text-emerald-300/80 mt-0.5">
+            <p className="text-[10px] text-sky-300/80 mt-0.5">
               Media Belajar Bahasa Arab Terpadu Kelas 10 Madrasah Aliyah
             </p>
           </div>
