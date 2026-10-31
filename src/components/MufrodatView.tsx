@@ -10,29 +10,32 @@ import {
   CheckCircle,
   Filter,
   Sparkles,
+  BookOpen,
 } from 'lucide-react';
 
 export const MufrodatView: React.FC = () => {
   const { savedWords, saveWordToFirestore, removeWordFromFirestore, recordLessonProgress, progressList } = useAuth();
-  const [selectedCategory, setSelectedCategory] = useState<string>('Semua');
+  const [selectedChapter, setSelectedChapter] = useState<string>('Semua Bab');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const categories = [
-    'Semua',
-    'Perkenalan & Sapaan',
-    'Sekolah & Belajar',
-    'Keluarga',
-    'Rumah & Perlengkapan',
-    'Makanan & Minuman',
+  const chapters = [
+    'Semua Bab',
+    'Bab 1: التحيات والتعارف',
+    'Bab 2: الأسرة والبيت',
+    'Bab 3: المدرسة ومرافقها',
+    'Bab 4: الحياة اليومية',
+    'Bab 5: الهواية والترويح',
+    'Bab 6: الطعام والشراب',
   ];
 
   const filteredMufrodat = MUFRODAT_DATA.filter((item) => {
-    const matchCategory = selectedCategory === 'Semua' || item.category === selectedCategory;
+    const matchChapter = selectedChapter === 'Semua Bab' || item.chapter.includes(selectedChapter.split(':')[0]);
     const matchSearch =
       item.arabic.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.meaning.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.transliteration.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchCategory && matchSearch;
+      item.transliteration.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.category.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchChapter && matchSearch;
   });
 
   const isWordSaved = (id: string) => savedWords.some((w) => w.wordId === id);
@@ -47,7 +50,7 @@ export const MufrodatView: React.FC = () => {
         arabic: item.arabic,
         transliteration: item.transliteration,
         meaning: item.meaning,
-        category: item.category,
+        category: `${item.chapter.split(':')[0]} - ${item.category}`,
       });
     }
   };
@@ -64,48 +67,48 @@ export const MufrodatView: React.FC = () => {
   return (
     <div className="space-y-6 max-w-6xl mx-auto pb-12">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200/80 pb-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-2xl font-bold text-slate-900">
-              Mufrodat (Kosakata Pilihan)
+              Mufrodat Tematik Kelas 10 MA
             </h1>
             <span className="font-arabic text-xl text-emerald-800 font-bold">
-              المُفْرَدَات
+              المُفْرَدَاتُ التَّعْلِيْمِيَّة
             </span>
           </div>
           <p className="text-xs text-slate-500 mt-1">
-            Dengarkan pelafalan murni dengan harakat lengkap dan simpan kata baru ke kamus pribadi Anda.
+            Kosakata pilihan kurikulum KMA 183 berharakat lengkap, audio pelafalan asli, jenis kata (Isim/Fi'il), dan contoh kalimat kontekstual.
           </p>
         </div>
 
-        {/* Search bar */}
-        <div className="relative min-w-[260px]">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+        {/* Search Bar */}
+        <div className="relative min-w-[280px]">
+          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
-            placeholder="Cari kata atau arti..."
+            placeholder="Cari kata Arab, latin, atau arti..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+            className="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 shadow-xs"
           />
         </div>
       </div>
 
-      {/* Category Pills */}
+      {/* Chapter Pills (Bab 1 - 6 MA) */}
       <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
         <Filter className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-        {categories.map((cat) => (
+        {chapters.map((ch) => (
           <button
-            key={cat}
-            onClick={() => setSelectedCategory(cat)}
+            key={ch}
+            onClick={() => setSelectedChapter(ch)}
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-              selectedCategory === cat
-                ? 'bg-emerald-700 text-white shadow-xs'
-                : 'bg-white text-slate-600 border border-slate-200 hover:border-emerald-300'
+              selectedChapter === ch
+                ? 'bg-emerald-800 text-white shadow-xs font-bold'
+                : 'bg-white text-slate-700 border border-slate-200 hover:border-emerald-400'
             }`}
           >
-            {cat}
+            {ch}
           </button>
         ))}
       </div>
@@ -120,15 +123,21 @@ export const MufrodatView: React.FC = () => {
             <div
               key={item.id}
               className={`bg-white rounded-3xl p-5 border transition-all flex flex-col justify-between shadow-xs ${
-                learned ? 'border-emerald-200 bg-emerald-50/20' : 'border-slate-200/90 hover:border-emerald-300'
+                learned ? 'border-emerald-300 bg-emerald-50/20' : 'border-slate-200 hover:border-emerald-400 hover:shadow-md'
               }`}
             >
-              {/* Top meta & action icons */}
+              {/* Top metadata & bookmark/audio actions */}
               <div>
                 <div className="flex items-center justify-between text-xs mb-3">
-                  <span className="px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 font-medium text-[11px]">
-                    {item.category}
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200/60 font-bold text-[10px]">
+                      {item.chapter.split(':')[0]}
+                    </span>
+                    <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 font-medium text-[10px]">
+                      {item.wordType}
+                    </span>
+                  </div>
+
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => toggleBookmark(item)}
@@ -149,7 +158,7 @@ export const MufrodatView: React.FC = () => {
                     <button
                       onClick={() => speakArabic(item.arabic)}
                       title="Dengarkan suara pelafalan"
-                      className="p-1.5 rounded-lg text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition-colors cursor-pointer"
+                      className="p-1.5 rounded-lg text-emerald-800 bg-emerald-50 hover:bg-emerald-100 transition-colors cursor-pointer"
                     >
                       <Volume2 className="w-4 h-4" />
                     </button>
@@ -157,11 +166,11 @@ export const MufrodatView: React.FC = () => {
                 </div>
 
                 {/* Arabic Script */}
-                <div className="text-center py-4 bg-gradient-to-b from-slate-50/50 to-emerald-50/30 rounded-2xl border border-emerald-50 my-2">
+                <div className="text-center py-4 bg-gradient-to-b from-slate-50/60 to-emerald-50/30 rounded-2xl border border-emerald-50/80 my-2">
                   <p className="font-arabic text-3xl sm:text-4xl text-slate-900 font-bold tracking-normal leading-loose">
                     {item.arabic}
                   </p>
-                  <p className="text-xs font-semibold text-emerald-700 mt-1">
+                  <p className="text-xs font-semibold text-emerald-800 mt-1">
                     {item.transliteration}
                   </p>
                 </div>
@@ -171,15 +180,18 @@ export const MufrodatView: React.FC = () => {
                   <p className="text-sm font-bold text-slate-900">
                     {item.meaning}
                   </p>
+                  <p className="text-[11px] text-slate-500 mt-0.5">
+                    Kategori: {item.category}
+                  </p>
                 </div>
 
                 {/* Example sentence */}
                 {item.exampleArabic && (
-                  <div className="mt-3 pt-3 border-t border-slate-100 bg-slate-50/70 p-2.5 rounded-xl text-right">
+                  <div className="mt-3 pt-3 border-t border-slate-100 bg-slate-50/70 p-3 rounded-2xl text-right">
                     <p className="font-arabic text-base text-slate-800 font-medium leading-relaxed">
                       {item.exampleArabic}
                     </p>
-                    <p className="text-[11px] text-slate-500 text-left mt-1 italic">
+                    <p className="text-[11px] text-slate-500 text-left mt-1.5 italic">
                       "{item.exampleMeaning}"
                     </p>
                   </div>
@@ -189,17 +201,17 @@ export const MufrodatView: React.FC = () => {
               {/* Bottom Action: Mark as Learned */}
               <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
                 {learned ? (
-                  <span className="flex items-center gap-1.5 text-xs text-emerald-700 font-semibold">
+                  <span className="flex items-center gap-1.5 text-xs text-emerald-800 font-bold">
                     <CheckCircle className="w-4 h-4 text-emerald-600" />
-                    <span>Sudah Dikuasai (+30 XP)</span>
+                    <span>Sudah Dikuasai (+35 XP)</span>
                   </span>
                 ) : (
                   <button
                     onClick={() => markLearned(item)}
-                    className="w-full flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-xl text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-colors cursor-pointer"
+                    className="w-full flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-xl text-xs font-semibold text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-colors cursor-pointer"
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Tandai Sudah Paham (+30 XP)</span>
+                    <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+                    <span>Tandai Sudah Paham (+35 XP)</span>
                   </button>
                 )}
               </div>
@@ -210,7 +222,9 @@ export const MufrodatView: React.FC = () => {
 
       {filteredMufrodat.length === 0 && (
         <div className="text-center py-12 bg-white rounded-3xl border border-slate-200">
-          <p className="text-sm text-slate-500">Tidak ada kosakata yang cocok dengan pencarian Anda.</p>
+          <BookOpen className="w-10 h-10 text-slate-300 mx-auto mb-2" />
+          <p className="text-sm font-semibold text-slate-700">Tidak ada kosakata yang cocok</p>
+          <p className="text-xs text-slate-500 mt-0.5">Silakan pilih bab lain atau ubah kata kunci pencarian Anda.</p>
         </div>
       )}
     </div>

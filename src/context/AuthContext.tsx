@@ -15,17 +15,21 @@ import {
 } from 'firebase/firestore';
 import { auth, db, googleProvider } from '../lib/firebase';
 import { handleFirestoreError, OperationType } from '../lib/firestore-errors';
-import { UserProfile, SavedWord, LessonProgress, QuizResult } from '../types';
+import { UserProfile, UserRole, SavedWord, LessonProgress, QuizResult } from '../types';
 
 interface AuthContextType {
-  currentUser: User | null;
+  currentUser: { uid: string; email: string | null; displayName: string | null; photoURL: string | null } | null;
   userProfile: UserProfile | null;
+  selectedLoginRole: UserRole;
+  setSelectedLoginRole: (role: UserRole) => void;
   savedWords: SavedWord[];
   progressList: LessonProgress[];
   quizResults: QuizResult[];
   loading: boolean;
   loginError: string | null;
-  signInWithGoogle: () => Promise<void>;
+  signInWithGoogle: (preferredRole?: UserRole) => Promise<void>;
+  loginWithDemoAccount: (role: UserRole) => Promise<void>;
+  updateUserRole: (newRole: UserRole) => Promise<void>;
   logout: () => Promise<void>;
   awardXP: (amount: number) => Promise<void>;
   saveWordToFirestore: (word: {
@@ -54,9 +58,41 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const DEMO_USERS = {
+  siswa: {
+    uid: 'demo_siswa_aliyah_10',
+    email: 'siswa.aliyah@albayan.edu',
+    displayName: 'Ahmad Fauzi (Siswa Kelas 10-A)',
+    photoURL: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80',
+    role: 'siswa' as UserRole,
+    kelas: 'Kelas 10-A Madrasah Aliyah',
+    schoolName: 'MAN 1 Model (Madrasah Aliyah Negeri)',
+    xp: 280,
+    streak: 6,
+    level: 'Menengah',
+    createdAt: '2026-07-15T08:00:00.000Z',
+    updatedAt: new Date().toISOString(),
+  },
+  guru: {
+    uid: 'demo_guru_aliyah_ustadz',
+    email: 'guru.aliyah@albayan.edu',
+    displayName: 'Ustadz H. Mansyur, Lc., M.Pd.',
+    photoURL: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80',
+    role: 'guru' as UserRole,
+    kelas: 'Guru Pengampu Kelas 10 MA',
+    schoolName: 'MAN 1 Model (Madrasah Aliyah Negeri)',
+    xp: 850,
+    streak: 15,
+    level: 'Mahir',
+    createdAt: '2026-07-01T08:00:00.000Z',
+    updatedAt: new Date().toISOString(),
+  },
+};
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<{ uid: string; email: string | null; displayName: string | null; photoURL: string | null } | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [selectedLoginRole, setSelectedLoginRole] = useState<UserRole>('siswa');
   const [savedWords, setSavedWords] = useState<SavedWord[]>([]);
   const [progressList, setProgressList] = useState<LessonProgress[]>([]);
   const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
@@ -64,8 +100,39 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loginError, setLoginError] = useState<string | null>(null);
   const [, startTransition] = useTransition();
 
-  // Listen to Auth State
+  // Check for saved demo session in localStorage or Firebase Auth
   useEffect(() => {
+    const savedDemoKey = localStorage.getItem('albayan_demo_user_role');
+    if (savedDemoKey && (savedDemoKey === 'siswa' || savedDemoKey === 'guru')) {
+      const demoData = DEMO_USERS[savedDemoKey as UserRole];
+      setCurrentUser({
+        uid: demoData.uid,
+        email: demoData.email,
+        displayName: demoData.displayName,
+        photoURL: demoData.photoURL,
+      });
+      setUserProfile(demoData);
+      setSelectedLoginRole(savedDemoKey as UserRole);
+
+      // Seed initial demo data in Firestore if not exists
+      const initDemoInFirestore = async () => {
+        try {
+          const userDocRef = doc(db, 'users', demoData.uid);
+          const snap = await getDoc(userDocRef);
+          if (!snap.exists()) {
+            await setDoc(userDocRef, demoData);
+          } else {
+            setUserProfile(snap.data() as UserProfile);
+          }
+        } catch (e) {
+          console.warn('Demo init sync:', e);
+        }
+      };
+      initDemoInFirestore();
+      setLoading(false);
+      return;
+    }
+
     const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
       startTransition(() => {
         setCurrentUser(user);
@@ -73,7 +140,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (user) {
         setLoginError(null);
-        // Initialize or fetch user document in Firestore
+        localStorage.removeItem('albayan_demo_user_role');
         const userDocPath = `users/${user.uid}`;
         try {
           const userDocRef = doc(db, 'users', user.uid);
@@ -83,11 +150,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const initialProfile: UserProfile = {
               uid: user.uid,
               email: user.email || '',
-              displayName: user.displayName || 'Penuntut Ilmu',
+              displayName: user.displayName || (selectedLoginRole === 'guru' ? 'Ustadz Pengampu' : 'Santri Aliyah'),
               photoURL: user.photoURL || '',
-              xp: 50, // Welcome bonus
+              role: selectedLoginRole,
+              kelas: 'Kelas 10 Madrasah Aliyah',
+              schoolName: 'Madrasah Aliyah',
+              xp: selectedLoginRole === 'guru' ? 200 : 50,
               streak: 1,
-              level: 'Pemula',
+              level: selectedLoginRole === 'guru' ? 'Mahir' : 'Pemula',
               createdAt: new Date().toISOString(),
               updatedAt: new Date().toISOString(),
             };
@@ -96,8 +166,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
               setUserProfile(initialProfile);
             });
           } else {
+            const data = snap.data() as UserProfile;
             startTransition(() => {
-              setUserProfile(snap.data() as UserProfile);
+              setUserProfile(data);
             });
           }
         } catch (err) {
@@ -115,7 +186,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
 
     return () => unsubscribeAuth();
-  }, []);
+  }, [selectedLoginRole]);
 
   // Set up real-time listener for current user's profile and subcollections
   useEffect(() => {
@@ -201,17 +272,130 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
   }, [currentUser]);
 
-  const signInWithGoogle = async () => {
+  // Demo / Bawaan Account login function
+  const loginWithDemoAccount = async (role: UserRole) => {
     setLoginError(null);
+    setLoading(true);
+    const demo = DEMO_USERS[role];
+
     try {
-      await signInWithPopup(auth, googleProvider);
+      localStorage.setItem('albayan_demo_user_role', role);
+      setCurrentUser({
+        uid: demo.uid,
+        email: demo.email,
+        displayName: demo.displayName,
+        photoURL: demo.photoURL,
+      });
+      setSelectedLoginRole(role);
+
+      // Save/sync into Firestore
+      const userDocRef = doc(db, 'users', demo.uid);
+      const snap = await getDoc(userDocRef);
+      if (!snap.exists()) {
+        await setDoc(userDocRef, demo);
+        setUserProfile(demo);
+        // Seed default words and quiz for demo account
+        await setDoc(doc(db, 'users', demo.uid, 'saved_words', 'muf-ma-1'), {
+          userId: demo.uid,
+          wordId: 'muf-ma-1',
+          arabic: 'السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ',
+          transliteration: 'Assalaamu \'alaikum wa rahmatullaahi wa barakaatuh',
+          meaning: 'Semoga keselamatan, rahmat Allah, dan berkah-Nya tercurah untuk kalian (Salam Pembuka)',
+          category: 'Bab 1 - Sapaan & Ungkapan',
+          savedAt: new Date().toISOString(),
+        });
+        await setDoc(doc(db, 'users', demo.uid, 'saved_words', 'muf-ma-2'), {
+          userId: demo.uid,
+          wordId: 'muf-ma-2',
+          arabic: 'بِطَاقَةٌ شَخْصِيَّةٌ',
+          transliteration: 'Bithaaqotun syakhshiyyah',
+          meaning: 'Kartu identitas siswa / Kartu pelajar (KTS)',
+          category: 'Bab 1 - Identitas Santri / Siswa',
+          savedAt: new Date().toISOString(),
+        });
+      } else {
+        setUserProfile(snap.data() as UserProfile);
+      }
+    } catch (err: any) {
+      console.warn('Error during demo login:', err);
+      // Fallback state
+      setUserProfile(demo);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signInWithGoogle = async (preferredRole?: UserRole) => {
+    setLoginError(null);
+    const chosenRole = preferredRole || selectedLoginRole;
+    setSelectedLoginRole(chosenRole);
+
+    try {
+      localStorage.removeItem('albayan_demo_user_role');
+      const cred = await signInWithPopup(auth, googleProvider);
+      if (cred.user) {
+        const userDocRef = doc(db, 'users', cred.user.uid);
+        const snap = await getDoc(userDocRef);
+        if (!snap.exists()) {
+          const newProf: UserProfile = {
+            uid: cred.user.uid,
+            email: cred.user.email || '',
+            displayName: cred.user.displayName || (chosenRole === 'guru' ? 'Ustadz Pengampu' : 'Santri Aliyah'),
+            photoURL: cred.user.photoURL || '',
+            role: chosenRole,
+            kelas: 'Kelas 10 Madrasah Aliyah',
+            schoolName: 'Madrasah Aliyah',
+            xp: chosenRole === 'guru' ? 200 : 50,
+            streak: 1,
+            level: chosenRole === 'guru' ? 'Mahir' : 'Pemula',
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+          };
+          await setDoc(userDocRef, newProf);
+          setUserProfile(newProf);
+        } else {
+          const existing = snap.data() as UserProfile;
+          if (existing.role !== chosenRole && preferredRole) {
+            const updated = {
+              ...existing,
+              role: chosenRole,
+              updatedAt: new Date().toISOString(),
+            };
+            await setDoc(userDocRef, updated);
+            setUserProfile(updated);
+          }
+        }
+      }
     } catch (err: any) {
       console.error('Google Sign-In Error:', err);
       setLoginError(err?.message || 'Gagal masuk dengan akun Google.');
     }
   };
 
+  const updateUserRole = async (newRole: UserRole) => {
+    if (!currentUser || !userProfile) return;
+    const userDocPath = `users/${currentUser.uid}`;
+    try {
+      const updated: UserProfile = {
+        ...userProfile,
+        role: newRole,
+        updatedAt: new Date().toISOString(),
+      };
+      await setDoc(doc(db, 'users', currentUser.uid), updated);
+      setUserProfile(updated);
+      setSelectedLoginRole(newRole);
+      if (localStorage.getItem('albayan_demo_user_role')) {
+        localStorage.setItem('albayan_demo_user_role', newRole);
+      }
+    } catch (err) {
+      handleFirestoreError(err, OperationType.UPDATE, userDocPath);
+    }
+  };
+
   const logout = async () => {
+    localStorage.removeItem('albayan_demo_user_role');
+    setCurrentUser(null);
+    setUserProfile(null);
     try {
       await signOut(auth);
     } catch (err: any) {
@@ -224,9 +408,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const userDocPath = `users/${currentUser.uid}`;
     try {
       const newXP = (userProfile.xp || 0) + amount;
-      let newLevel = 'Pemula';
-      if (newXP >= 400) newLevel = 'Mahir';
-      else if (newXP >= 150) newLevel = 'Menengah';
+      let newLevel = userProfile.level || 'Pemula';
+      if (newXP >= 500) newLevel = 'Mahir';
+      else if (newXP >= 200) newLevel = 'Menengah';
 
       const updated = {
         ...userProfile,
@@ -235,6 +419,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         updatedAt: new Date().toISOString(),
       };
       await setDoc(doc(db, 'users', currentUser.uid), updated);
+      setUserProfile(updated);
     } catch (err) {
       handleFirestoreError(err, OperationType.UPDATE, userDocPath);
     }
@@ -256,7 +441,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         arabic: word.arabic,
         transliteration: word.transliteration || '',
         meaning: word.meaning,
-        category: word.category || 'Umum',
+        category: word.category || 'Mufrodat MA',
         savedAt: new Date().toISOString(),
       };
       await setDoc(doc(db, 'users', currentUser.uid, 'saved_words', word.wordId), payload);
@@ -293,7 +478,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         completedAt: new Date().toISOString(),
       };
       await setDoc(doc(db, 'users', currentUser.uid, 'progress', progress.lessonId), payload);
-      await awardXP(30);
+      await awardXP(35);
     } catch (err) {
       handleFirestoreError(err, OperationType.WRITE, path);
     }
@@ -314,14 +499,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         userId: currentUser.uid,
         quizId: quiz.quizId,
         quizTitle: quiz.quizTitle,
-        category: quiz.category || 'Umum',
+        category: quiz.category || 'Kuis Kelas 10 MA',
         score: quiz.score,
         totalQuestions: quiz.totalQuestions,
         percentage: quiz.percentage,
         completedAt: new Date().toISOString(),
       };
       await setDoc(doc(db, 'users', currentUser.uid, 'quiz_results', quiz.quizId), payload);
-      // Award XP proportional to score
       const earnedXP = Math.round(quiz.percentage / 2);
       await awardXP(earnedXP);
     } catch (err) {
@@ -334,12 +518,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       value={{
         currentUser,
         userProfile,
+        selectedLoginRole,
+        setSelectedLoginRole,
         savedWords,
         progressList,
         quizResults,
         loading,
         loginError,
         signInWithGoogle,
+        loginWithDemoAccount,
+        updateUserRole,
         logout,
         awardXP,
         saveWordToFirestore,

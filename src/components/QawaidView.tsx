@@ -53,26 +53,26 @@ export const QawaidView: React.FC = () => {
   return (
     <div className="space-y-6 max-w-6xl mx-auto pb-12">
       {/* Title */}
-      <div className="border-b border-slate-200/80 pb-4">
+      <div className="border-b border-slate-200 pb-4">
         <div className="flex items-center gap-2">
           <h1 className="text-2xl font-bold text-slate-900">
-            Qawa'id (Kaidah Tata Bahasa Arab)
+            Qawa'id Nahwu & Shorof (Kelas 10 MA)
           </h1>
           <span className="font-arabic text-xl text-emerald-800 font-bold">
-            القَوَاعِدُ النَّحْوِيَّة
+            القَوَاعِدُ النَّحْوِيَّةُ وَالصَّرْفِيَّة
           </span>
         </div>
         <p className="text-xs text-slate-500 mt-1">
-          Pelajari struktur tata bahasa Nahwu & Shorof secara sistematis dilengkapi contoh aplikatif dan latihan pemahaman.
+          Kaidah tata bahasa pokok kurikulum KMA 183: Pembagian Kata, Dhomir Munfashil & Muttashil, Na'at Man'ut, serta Jumlah Fi'liyyah.
         </p>
       </div>
 
       {/* Main Layout: Sidebar of Lessons + Lesson Content */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left: Lessons List */}
-        <div className="lg:col-span-4 space-y-2">
-          <p className="text-xs font-bold uppercase tracking-wider text-slate-400 px-1 mb-2">
-            Daftar Modul Kaidah
+        <div className="lg:col-span-4 space-y-2.5">
+          <p className="text-xs font-bold uppercase tracking-wider text-slate-400 px-1 mb-1">
+            Modul Kaidah Pokok MA
           </p>
           {QAWAID_DATA.map((lesson) => {
             const isSelected = lesson.id === currentLesson.id;
@@ -85,20 +85,20 @@ export const QawaidView: React.FC = () => {
                   setSelectedLessonId(lesson.id);
                   handleResetQuiz();
                 }}
-                className={`w-full text-left p-3.5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
+                className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
                   isSelected
-                    ? 'bg-emerald-800 text-white border-emerald-800 shadow-md shadow-emerald-900/10'
-                    : 'bg-white text-slate-800 border-slate-200 hover:border-emerald-300 hover:bg-slate-50'
+                    ? 'bg-emerald-900 text-white border-emerald-900 shadow-md shadow-emerald-950/20'
+                    : 'bg-white text-slate-800 border-slate-200 hover:border-emerald-400 hover:bg-slate-50'
                 }`}
               >
                 <div className="pr-2">
                   <div className="flex items-center gap-2">
                     <span
                       className={`text-[10px] px-2 py-0.5 rounded-md font-bold uppercase ${
-                        isSelected ? 'bg-emerald-700 text-emerald-100' : 'bg-slate-100 text-slate-600'
+                        isSelected ? 'bg-amber-400 text-slate-950' : 'bg-amber-50 text-amber-800 border border-amber-200/50'
                       }`}
                     >
-                      {lesson.level}
+                      {lesson.chapter.split(':')[0]}
                     </span>
                     {completed && (
                       <span className="flex items-center gap-1 text-[11px] text-emerald-300 font-medium">
@@ -107,11 +107,11 @@ export const QawaidView: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  <h3 className="font-bold text-sm mt-1.5 leading-snug">
+                  <h3 className="font-bold text-xs sm:text-sm mt-1.5 leading-snug">
                     {lesson.title}
                   </h3>
                 </div>
-                <span className={`font-arabic text-lg font-bold shrink-0 ${isSelected ? 'text-emerald-200' : 'text-emerald-700'}`}>
+                <span className={`font-arabic text-base font-bold shrink-0 ${isSelected ? 'text-amber-200' : 'text-emerald-800'}`}>
                   {lesson.arabicTitle}
                 </span>
               </button>
@@ -121,11 +121,11 @@ export const QawaidView: React.FC = () => {
 
         {/* Right: Active Lesson Body */}
         <div className="lg:col-span-8 space-y-6">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-xs">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs">
             {/* Header info */}
             <div className="border-b border-slate-100 pb-5 mb-6">
               <div className="flex items-center justify-between">
-                <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold">
+                <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-900 text-xs font-bold border border-emerald-200/60">
                   {currentLesson.level}
                 </span>
                 <span className="font-arabic text-2xl text-emerald-800 font-bold">
@@ -142,16 +142,16 @@ export const QawaidView: React.FC = () => {
 
             {/* In-depth content */}
             <div className="space-y-6">
-              <div className="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100 text-xs text-slate-700 leading-relaxed">
-                <p className="font-medium">{currentLesson.content}</p>
+              <div className="bg-gradient-to-r from-emerald-50/60 to-amber-50/40 p-4 rounded-2xl border border-emerald-100 text-xs text-slate-800 leading-relaxed font-medium">
+                {currentLesson.content}
               </div>
 
               {/* Rules & Examples */}
               <div className="space-y-5">
                 {currentLesson.rules.map((rule, idx) => (
                   <div key={idx} className="border border-slate-200 rounded-2xl p-5 bg-white">
-                    <h3 className="font-bold text-slate-900 text-base mb-1.5 flex items-center gap-2">
-                      <Compass className="w-4 h-4 text-emerald-600" />
+                    <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-1.5 flex items-center gap-2">
+                      <Compass className="w-4 h-4 text-emerald-700" />
                       <span>{rule.ruleTitle}</span>
                     </h3>
                     <p className="text-xs text-slate-600 mb-4 leading-relaxed">
@@ -163,13 +163,13 @@ export const QawaidView: React.FC = () => {
                       {rule.examples.map((ex, exIdx) => (
                         <div
                           key={exIdx}
-                          className="bg-slate-50/80 rounded-xl p-3 border border-slate-100 flex flex-col justify-between"
+                          className="bg-slate-50/80 rounded-xl p-3.5 border border-slate-200/80 flex flex-col justify-between"
                         >
                           <div className="flex items-start justify-between">
                             <button
                               onClick={() => speakArabic(ex.arabic)}
                               title="Dengarkan pengucapan"
-                              className="p-1 rounded-md text-emerald-700 hover:bg-emerald-100 transition-colors cursor-pointer"
+                              className="p-1.5 rounded-lg text-emerald-800 hover:bg-emerald-100 transition-colors cursor-pointer"
                             >
                               <Volume2 className="w-3.5 h-3.5" />
                             </button>
@@ -178,14 +178,14 @@ export const QawaidView: React.FC = () => {
                             </p>
                           </div>
                           <div className="mt-2 text-xs">
-                            <p className="font-semibold text-emerald-700">
+                            <p className="font-semibold text-emerald-800">
                               {ex.transliteration}
                             </p>
-                            <p className="text-slate-600 font-medium">
+                            <p className="text-slate-700 font-medium mt-0.5">
                               {ex.meaning}
                             </p>
                             {ex.note && (
-                              <span className="inline-block mt-1 text-[10px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md font-medium border border-amber-200/50">
+                              <span className="inline-block mt-1 text-[10px] text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md font-medium border border-amber-200/60">
                                 {ex.note}
                               </span>
                             )}
@@ -203,7 +203,7 @@ export const QawaidView: React.FC = () => {
                   <div className="flex items-center gap-2 mb-4">
                     <HelpCircle className="w-5 h-5 text-amber-600" />
                     <h3 className="font-bold text-slate-900 text-base">
-                      Latihan Pemahaman Materi
+                      Latihan Pemahaman Materi Kaidah
                     </h3>
                   </div>
 
@@ -271,16 +271,16 @@ export const QawaidView: React.FC = () => {
                       <button
                         onClick={handleCheckQuiz}
                         disabled={Object.keys(quizAnswers).length === 0}
-                        className="py-2.5 px-5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs flex items-center gap-2 transition-colors cursor-pointer disabled:opacity-50"
+                        className="py-2.5 px-5 rounded-xl bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-xs flex items-center gap-2 transition-colors cursor-pointer disabled:opacity-50"
                       >
-                        <Sparkles className="w-4 h-4" />
-                        <span>Koreksi & Simpan Progres (+XP)</span>
+                        <Sparkles className="w-4 h-4 text-amber-300" />
+                        <span>Koreksi & Simpan Progres (+35 XP)</span>
                       </button>
                     ) : (
                       <div className="flex items-center gap-3">
                         <span className="text-xs text-emerald-800 font-bold flex items-center gap-1.5">
                           <CheckCircle className="w-4 h-4 text-emerald-600" />
-                          <span>Progres berhasil disimpan ke profil Anda!</span>
+                          <span>Progres tersimpan di profil Firestore Anda!</span>
                         </span>
                         <button
                           onClick={handleResetQuiz}

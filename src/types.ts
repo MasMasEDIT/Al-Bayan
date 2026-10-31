@@ -1,8 +1,13 @@
+export type UserRole = 'siswa' | 'guru';
+
 export interface UserProfile {
   uid: string;
   email: string;
   displayName: string;
   photoURL?: string;
+  role: UserRole;
+  kelas?: string; // default: 'Kelas 10 Madrasah Aliyah'
+  schoolName?: string;
   xp: number;
   streak: number;
   level: string; // 'Pemula' | 'Menengah' | 'Mahir'
@@ -42,10 +47,12 @@ export interface QuizResult {
 
 export interface MufrodatItem {
   id: string;
+  chapter: string; // e.g. "Bab 1: التحيات والتعارف"
   category: string;
   arabic: string;
   transliteration: string;
   meaning: string;
+  wordType: 'Isim' | 'Fi\'il' | 'Huruf' | 'Ungkapan';
   exampleArabic?: string;
   exampleTrans?: string;
   exampleMeaning?: string;
@@ -53,6 +60,7 @@ export interface MufrodatItem {
 
 export interface QawaidItem {
   id: string;
+  chapter: string;
   title: string;
   arabicTitle: string;
   level: string;
@@ -87,9 +95,11 @@ export interface HiwarDialogue {
 
 export interface HiwarItem {
   id: string;
+  chapter: string;
   title: string;
   arabicTitle: string;
   situation: string;
+  contextDesc: string;
   dialogues: HiwarDialogue[];
 }
 
@@ -113,4 +123,15 @@ export interface ChatMessage {
   sender: 'user' | 'tutor';
   text: string;
   timestamp: string;
+}
+
+export interface TeacherSilabusItem {
+  bab: number;
+  tema: string;
+  temaArab: string;
+  tarkib: string;
+  alokasiWaktu: string;
+  capaianPembelajaran: string[];
+  materiPokok: string;
+  panduanAktivitas: string;
 }

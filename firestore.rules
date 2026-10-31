@@ -1,12 +1,12 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // 1. Aturan keamanan bawaan: Tolak semua akses publik / tanpa login
+    // 1. Aturan keamanan bawaan: Tolak semua akses tanpa otentikasi
     match /{document=**} {
       allow read, write: if false;
     }
 
-    // Fungsi pembantu pengecekan otentikasi
+    // Fungsi pembantu otentikasi & kepemilikan data
     function isSignedIn() {
       return request.auth != null;
     }
@@ -15,27 +15,31 @@ service cloud.firestore {
       return isSignedIn() && request.auth.uid == userId;
     }
 
-    // 2. Data khusus per pengguna (User Isolation)
-    // Setiap user hanya memiliki izin baca & tulis pada dokumen dan subkoleksi miliknya sendiri
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // 2. Isolasi Data Pengguna (Siswa & Guru Madrasah Aliyah)
     match /users/{userId} {
-      // User hanya dapat membaca dan memperbarui profil mereka sendiri
-      allow read, write: if isOwner(userId);
+      // User (Siswa/Guru) hanya dapat membaca dan menulis dokumen profil miliknya sendiri
+      allow read, write: if isOwner(userId) && isValidId(userId);
 
-      // Subkoleksi user (progress belajar, kamus tersimpan, dan hasil kuis)
-      // Hanya dapat diakses (read, write, delete) oleh pemilik userId
+      // Subkoleksi: Progress pembelajaran
       match /progress/{progressId} {
-        allow read, write: if isOwner(userId);
+        allow read, write: if isOwner(userId) && isValidId(progressId);
       }
 
+      // Subkoleksi: Kamus kosakata tersimpan (Flashcards)
       match /saved_words/{savedWordId} {
-        allow read, write: if isOwner(userId);
+        allow read, write: if isOwner(userId) && isValidId(savedWordId);
       }
 
+      // Subkoleksi: Hasil kuis & evaluasi
       match /quiz_results/{quizResultId} {
-        allow read, write: if isOwner(userId);
+        allow read, write: if isOwner(userId) && isValidId(quizResultId);
       }
 
-      // Melindungi subkoleksi turunan lainnya di masa depan
+      // Subkoleksi tambahan di bawah akun user
       match /{allSubcollections=**} {
         allow read, write: if isOwner(userId);
       }

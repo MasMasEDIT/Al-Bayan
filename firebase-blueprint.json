@@ -2,20 +2,23 @@
   "entities": {
     "User": {
       "title": "User Profile",
-      "description": "User account information and general Arabic learning statistics",
+      "description": "User account information and general Arabic learning statistics for Siswa or Guru",
       "type": "object",
       "properties": {
         "uid": { "type": "string", "description": "Unique Firebase user ID" },
         "email": { "type": "string", "description": "User email address" },
         "displayName": { "type": "string", "description": "User display name" },
         "photoURL": { "type": "string", "description": "User avatar photo URL" },
+        "role": { "type": "string", "enum": ["siswa", "guru"], "description": "User role: siswa (student) or guru (teacher)" },
+        "kelas": { "type": "string", "description": "Target class level, e.g. Kelas 10 Madrasah Aliyah" },
+        "schoolName": { "type": "string", "description": "Madrasah / School name" },
         "xp": { "type": "number", "description": "Total experience points earned" },
         "streak": { "type": "number", "description": "Current daily learning streak count" },
         "level": { "type": "string", "description": "Current learning level (Pemula, Menengah, Mahir)" },
         "updatedAt": { "type": "string", "description": "ISO timestamp of last activity update" },
         "createdAt": { "type": "string", "description": "ISO timestamp of account creation" }
       },
-      "required": ["uid", "email", "displayName", "xp", "streak", "level", "createdAt"]
+      "required": ["uid", "email", "displayName", "role", "xp", "streak", "level", "createdAt"]
     },
     "Progress": {
       "title": "Lesson Progress",
@@ -41,7 +44,7 @@
         "arabic": { "type": "string", "description": "Arabic script of the word" },
         "transliteration": { "type": "string", "description": "Latin pronunciation transliteration" },
         "meaning": { "type": "string", "description": "Indonesian meaning of the word" },
-        "category": { "type": "string", "description": "Vocabulary category (misal: Rumah, Sekolah, Makanan)" },
+        "category": { "type": "string", "description": "Vocabulary category" },
         "savedAt": { "type": "string", "description": "ISO timestamp when word was saved" }
       },
       "required": ["userId", "wordId", "arabic", "meaning", "savedAt"]

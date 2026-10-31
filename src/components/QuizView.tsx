@@ -297,10 +297,10 @@ export const QuizView: React.FC = () => {
                 <label className="text-xs font-bold text-slate-700">Topik Kuis:</label>
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   {[
-                    { id: 'mufrodat', label: 'Mufrodat (Kosakata)' },
-                    { id: 'nahwu', label: 'Nahwu (Tata Bahasa)' },
-                    { id: 'hiwar', label: 'Hiwar (Percakapan)' },
-                    { id: 'shorof', label: 'Shorof (Perubahan Kata)' },
+                    { id: 'Ta\'aruf & Aqsamul Kalam (Kelas 10 MA)', label: 'Bab 1: Ta\'aruf & Pembagian Kata' },
+                    { id: 'Usrah & Dhomir Muttashil (Kelas 10 MA)', label: 'Bab 2: Usrah & Dhomir' },
+                    { id: 'Madrasah & Na\'at Man\'ut (Kelas 10 MA)', label: 'Bab 3: Fasilitas MA & Na\'at' },
+                    { id: 'Hayat Yaumiyyah & Jumlah Fi\'liyyah', label: 'Bab 4: Keseharian Santri MA' },
                   ].map((t) => (
                     <button
                       key={t.id}
